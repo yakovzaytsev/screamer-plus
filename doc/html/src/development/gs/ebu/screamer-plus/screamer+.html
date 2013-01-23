@@ -1,0 +1,1072 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../../../../../../../../cldoc/src/cludg.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<title>
+screamer+</title>
+</head>
+<body>
+<div id="navbar">
+<table cellspacing="0" cellpadding="0" border="0" style="width: 100%;">
+<colgroup span="3">
+<col width="0*"/>
+<col width="0*"/>
+<col width="1*"/>
+</colgroup>
+<tr>
+<td align="left" valign="baseline">
+<br/>
+</td>
+<td>
+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td align="left" valign="baseline">
+<span class="upchain">
+<b>
+screamer+</b>
+<br/>
+<a href="../../../../../index.html">
+Index</a>
+</span>
+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+</table>
+</div>
+<div class="cludg-doc-body">
+<h2>
+screamer+
+</h2>
+<table style="width: 100%;" class="summary-table">
+<tr class="table-heading-color">
+<th class="summary" colspan="2">
+Structure summary</th>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11876">
+variable+</a>
+</td>
+<td class="summary">
+includes <em class="cl">variable</em></td>
+</tr>
+</table>
+<table style="width: 100%;" class="summary-table">
+<tr class="table-heading-color">
+<th class="summary" colspan="2">
+Method summary</th>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11882">
+variable-get-type</a>
+</td>
+<td class="summary">
+(x variable+)</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11881">
+variable-type-known?</a>
+</td>
+<td class="summary">
+(x variable+)</td>
+</tr>
+</table>
+<table style="width: 100%;" class="summary-table">
+<tr class="table-heading-color">
+<th class="summary" colspan="2">
+Function summary</th>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11880">
+copy-variable+</a>
+</td>
+<td class="summary">
+variable+</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11878">
+make-variable+</a>
+</td>
+<td class="summary">
+<em>&amp;key</em> nonnumber-type</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11877">
+variable+-nonnumber-type</a>
+</td>
+<td class="summary">
+variable+</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11879">
+variable+-p</a>
+</td>
+<td class="summary">
+object</td>
+</tr>
+</table>
+<table style="width: 100%;" class="summary-table">
+<tr class="table-heading-color">
+<th class="summary" colspan="2">
+Macro summary</th>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11897">
+a-consv</a>
+</td>
+<td class="summary">
+</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11896">
+a-listv</a>
+</td>
+<td class="summary">
+</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11899">
+a-stringv</a>
+</td>
+<td class="summary">
+</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11898">
+a-symbolv</a>
+</td>
+<td class="summary">
+</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11901">
+at-leastv</a>
+</td>
+<td class="summary">
+n f <em>&amp;rest</em> x</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11900">
+at-mostv</a>
+</td>
+<td class="summary">
+n f <em>&amp;rest</em> x</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11883">
+carefully</a>
+</td>
+<td class="summary">
+<em>&amp;body</em> forms</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11884">
+carefully-evaluate</a>
+</td>
+<td class="summary">
+form</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11893">
+conspv</a>
+</td>
+<td class="summary">
+el</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11902">
+exactlyv</a>
+</td>
+<td class="summary">
+n f <em>&amp;rest</em> x</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11887">
+firstv</a>
+</td>
+<td class="summary">
+el</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11890">
+fourthv</a>
+</td>
+<td class="summary">
+el</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11886">
+ifv</a>
+</td>
+<td class="summary">
+condition exp1 <em>&amp;optional</em> (exp2 nil)</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11892">
+listpv</a>
+</td>
+<td class="summary">
+el</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11885">
+make-equal</a>
+</td>
+<td class="summary">
+var value <em>&amp;optional</em> (retval '(fail))</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11872">
+objectp</a>
+</td>
+<td class="summary">
+var</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11891">
+restv</a>
+</td>
+<td class="summary">
+el</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11888">
+secondv</a>
+</td>
+<td class="summary">
+el</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11875">
+setq-domains</a>
+</td>
+<td class="summary">
+vars vals <em>&amp;aux</em> (res nil)</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11895">
+stringpv</a>
+</td>
+<td class="summary">
+el</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11894">
+symbolpv</a>
+</td>
+<td class="summary">
+el</td>
+</tr>
+<tr class="table-row-color">
+<td class="summary-name">
+<a href="screamer+.html#_g11889">
+thirdv</a>
+</td>
+<td class="summary">
+el</td>
+</tr>
+</table>
+<div class="defpackage">
+<div class="defunsignatures">
+<a id="_g11871">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+SCREAMER+&nbsp;&nbsp;</td>
+<td class="lambda-list">
+</td>
+<td class="symbol-type">
+&nbsp;[Package]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defstruct">
+<div class="defunsignatures">
+<a id="_g11876">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+variable+&nbsp;&nbsp;</td>
+<td class="lambda-list">
+</td>
+<td class="symbol-type">
+&nbsp;[Structure]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="defclass-initargs">
+</div>
+<div class="defclass-slots-doc">
+</div>
+<div class="defclass-generics">
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11877">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+variable+-nonnumber-type&nbsp;&nbsp;</td>
+<td class="lambda-list">
+variable+</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns and (with setf) changes the nonnumber-type of the specified variable+ 
+ </p>
+</div>
+</div>
+</div>
+<div class="defstruct-defuns">
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11878">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+make-variable+&nbsp;&nbsp;</td>
+<td class="lambda-list">
+<em>&amp;key</em> nonnumber-type</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns a newly created variable+. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11880">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+copy-variable+&nbsp;&nbsp;</td>
+<td class="lambda-list">
+variable+</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns a copy of the specified variable+. 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11879">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+variable+-p&nbsp;&nbsp;</td>
+<td class="lambda-list">
+object</td>
+<td class="symbol-type">
+&nbsp;[Function]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Returns T if the specified object is of type variable+. 
+ </p>
+</div>
+</div>
+</div>
+</div>
+<div class="defparam">
+<div class="defunsignatures">
+<a id="_g11873">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+*screamer+-version*&nbsp;&nbsp;</td>
+<td class="lambda-list">
+</td>
+<td class="symbol-type">
+&nbsp;[Variable]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defparam">
+<div class="defunsignatures">
+<a id="_g11874">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+*enumeration-limit*&nbsp;&nbsp;</td>
+<td class="lambda-list">
+</td>
+<td class="symbol-type">
+&nbsp;[Variable]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11881">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+variable-type-known?&nbsp;&nbsp;</td>
+<td class="lambda-list">
+(x variable+)</td>
+<td class="symbol-type">
+&nbsp;[Method]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11882">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+variable-get-type&nbsp;&nbsp;</td>
+<td class="lambda-list">
+(x variable+)</td>
+<td class="symbol-type">
+&nbsp;[Method]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11872">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+objectp&nbsp;&nbsp;</td>
+<td class="lambda-list">
+var</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="doc-body">
+<p>
+Determines whether a variable is a standard CLOS object or not 
+ </p>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11875">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+setq-domains&nbsp;&nbsp;</td>
+<td class="lambda-list">
+vars vals <em>&amp;aux</em> (res nil)</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11883">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+carefully&nbsp;&nbsp;</td>
+<td class="lambda-list">
+<em>&amp;body</em> forms</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11884">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+carefully-evaluate&nbsp;&nbsp;</td>
+<td class="lambda-list">
+form</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11885">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+make-equal&nbsp;&nbsp;</td>
+<td class="lambda-list">
+var value <em>&amp;optional</em> (retval '(fail))</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11886">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+ifv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+condition exp1 <em>&amp;optional</em> (exp2 nil)</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11887">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+firstv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+el</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11888">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+secondv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+el</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11889">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+thirdv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+el</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11890">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+fourthv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+el</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11891">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+restv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+el</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11892">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+listpv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+el</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11893">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+conspv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+el</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11894">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+symbolpv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+el</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11895">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+stringpv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+el</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11896">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+a-listv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11897">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+a-consv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11898">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+a-symbolv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11899">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+a-stringv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11900">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+at-mostv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+n f <em>&amp;rest</em> x</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11901">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+at-leastv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+n f <em>&amp;rest</em> x</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="defun">
+<div class="defunsignatures">
+<a id="_g11902">
+</a>
+<table cellpadding="0" cellspacing="0" width="100%">
+<colgroup span="3">
+<col width="0*"/>
+<col width="1*"/>
+<col width="0*"/>
+</colgroup>
+<tbody>
+<tr>
+<td class="symbol-name">
+exactlyv&nbsp;&nbsp;</td>
+<td class="lambda-list">
+n f <em>&amp;rest</em> x</td>
+<td class="symbol-type">
+&nbsp;[Macro]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cludg-footer">
+Generated by&nbsp;<a href="mailto:ihatchondo@common-lisp.net" lang="en">
+CLDOC</a>
+- 2012-02-23 16:28:11</div>
+</body>
+</html>
