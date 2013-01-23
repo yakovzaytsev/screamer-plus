@@ -1,0 +1,3060 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html> 
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>SCREAMER+ - Extended Nondeterministic Constraint Logic</title>
+  <style type="text/css">
+  pre { padding:5px; background-color:#e0e0e0 }
+  h3, h4 { text-decoration: underline; }
+  a { text-decoration: none; padding: 1px 2px 1px 2px; }
+  a:visited { text-decoration: none; padding: 1px 2px 1px 2px; }
+  a:hover { text-decoration: none; padding: 1px 1px 1px 1px; border: 1px solid #000000; } 
+  a:focus { text-decoration: none; padding: 1px 2px 1px 2px; border: none; }
+  a.none { text-decoration: none; padding: 0; }
+  a.none:visited { text-decoration: none; padding: 0; } 
+  a.none:hover { text-decoration: none; border: none; padding: 0; } 
+  a.none:focus { text-decoration: none; border: none; padding: 0; } 
+  a.noborder { text-decoration: none; padding: 0; } 
+  a.noborder:visited { text-decoration: none; padding: 0; } 
+  a.noborder:hover { text-decoration: none; border: none; padding: 0; } 
+  a.noborder:focus { text-decoration: none; border: none; padding: 0; }  
+  pre.none { padding:5px; background-color:#ffffff }
+  </style>
+</head>
+
+<body bgcolor=white>
+
+<h2> SCREAMER+ - Extended Nondeterministic Constraint Logic</h2>
+
+<blockquote>
+<br>&nbsp;<br><h3><a name=abstract class=none>Abstract</a></h3>
+
+The code comes with
+a <a
+href="http://www.opensource.org/licenses/bsd-license.php">BSD-style
+license</a> so you can basically do with it whatever you want.
+
+<p>
+<font color=red>Download shortcut:</font> <a href="http://weitz.de/files/screamer+.tar.gz">http://weitz.de/files/screamer+.tar.gz</a>.
+</blockquote>
+
+<br>&nbsp;<br><h3><a class=none name="contents">Contents</a></h3>
+<ol>
+  <li><a href="#download">Download</a>
+  <li><a href="#dictionary">The SCREAMER+ dictionary</a>
+    <ol>
+      <li><a href="#*dynamic-extent?*"><code>*dynamic-extent?*</code></a>
+      <li><a href="#*enumeration-limit*"><code>*enumeration-limit*</code></a>
+      <li><a href="#*maximum-discretization-range*"><code>*maximum-discretization-range*</code></a>
+      <li><a href="#*minimum-shrink-ratio*"><code>*minimum-shrink-ratio*</code></a>
+      <li><a href="#*screamer-version*"><code>*screamer-version*</code></a>
+      <li><a href="#*strategy*"><code>*strategy*</code></a>
+      <li><a href="#*v"><code>*v</code></a>
+      <li><a href="#+v"><code>+v</code></a>
+      <li><a href="#-v"><code>-v</code></a>
+      <li><a href="#/=v"><code>/=v</code></a>
+      <li><a href="#/v"><code>/v</code></a>
+      <li><a href="#<=v"><code><=v</code></a>
+      <li><a href="#<v"><code><v</code></a>
+      <li><a href="#=v"><code>=v</code></a>
+      <li><a href="#>=v"><code>>=v</code></a>
+      <li><a href="#>v"><code>>v</code></a>
+      <li><a href="#a-boolean"><code>a-boolean</code></a>
+      <li><a href="#a-booleanv"><code>a-booleanv</code></a>
+      <li><a href="#a-consv"><code>a-consv</code></a>
+      <li><a href="#a-listv"><code>a-listv</code></a>
+      <li><a href="#a-member-of"><code>a-member-of</code></a>
+      <li><a href="#a-member-ofv"><code>a-member-ofv</code></a>
+      <li><a href="#a-numberv"><code>a-numberv</code></a>
+      <li><a href="#a-real-abovev"><code>a-real-abovev</code></a>
+      <li><a href="#a-real-belowv"><code>a-real-belowv</code></a>
+      <li><a href="#a-real-betweenv"><code>a-real-betweenv</code></a>
+      <li><a href="#a-realv"><code>a-realv</code></a>
+      <li><a href="#a-stringv"><code>a-stringv</code></a>
+      <li><a href="#a-symbolv"><code>a-symbolv</code></a>
+      <li><a href="#a-typed-varv"><code>a-typed-varv</code></a>
+      <li><a href="#all-differentv"><code>all-differentv</code></a>
+      <li><a href="#all-values"><code>all-values</code></a>
+      <li><a href="#an-integer"><code>an-integer</code></a>
+      <li><a href="#an-integer-above"><code>an-integer-above</code></a>
+      <li><a href="#an-integer-abovev"><code>an-integer-abovev</code></a>
+      <li><a href="#an-integer-below"><code>an-integer-below</code></a>
+      <li><a href="#an-integer-belowv"><code>an-integer-belowv</code></a>
+      <li><a href="#an-integer-between"><code>an-integer-between</code></a>
+      <li><a href="#an-integer-betweenv"><code>an-integer-betweenv</code></a>
+      <li><a href="#an-integerv"><code>an-integerv</code></a>
+      <li><a href="#andv"><code>andv</code></a>
+      <li><a href="#appendv"><code>appendv</code></a>
+      <li><a href="#apply-nondeterministic"><code>apply-nondeterministic</code></a>
+      <li><a href="#apply-substitution"><code>apply-substitution</code></a>
+      <li><a href="#applyv"><code>applyv</code></a>
+      <li><a href="#arefv"><code>arefv</code></a>
+      <li><a href="#assert!"><code>assert!</code></a>
+      <li><a href="#at-leastv"><code>at-leastv</code></a>
+      <li><a href="#at-mostv"><code>at-mostv</code></a>
+      <li><a href="#bag-equalv"><code>bag-equalv</code></a>
+      <li><a href="#best-value"><code>best-value</code></a>
+      <li><a href="#booleanp"><code>booleanp</code></a>
+      <li><a href="#booleanpv"><code>booleanpv</code></a>
+      <li><a href="#bound?"><code>bound?</code></a>
+      <li><a href="#carefully"><code>carefully</code></a>
+      <li><a href="#carv"><code>carv</code></a>
+      <li><a href="#cdrv"><code>cdrv</code></a>
+      <li><a href="#class-namev"><code>class-namev</code></a>
+      <li><a href="#class-ofv"><code>class-ofv</code></a>
+      <li><a href="#classpv"><code>classpv</code></a>
+      <li><a href="#conspv"><code>conspv</code></a>
+      <li><a href="#constraint-fn"><code>constraint-fn</code></a>
+      <li><a href="#consv"><code>consv</code></a>
+      <li><a href="#count-failures"><code>count-failures</code></a>
+      <li><a href="#count-trues"><code>count-trues</code></a>
+      <li><a href="#count-truesv"><code>count-truesv</code></a>
+      <li><a href="#decide"><code>decide</code></a>
+      <li><a href="#define-screamer-package"><code>define-screamer-package</code></a>
+      <li><a href="#divide-and-conquer-force"><code>divide-and-conquer-force</code></a>
+      <li><a href="#domain-size"><code>domain-size</code></a>
+      <li><a href="#either"><code>either</code></a>
+      <li><a href="#equalv"><code>equalv</code></a>
+      <li><a href="#eqv"><code>eqv</code></a>
+      <li><a href="#everyv"><code>everyv</code></a>
+      <li><a href="#exactlyv"><code>exactlyv</code></a>
+      <li><a href="#fail"><code>fail</code></a>
+      <li><a href="#firstv"><code>firstv</code></a>
+      <li><a href="#for-effects"><code>for-effects</code></a>
+      <li><a href="#formatv"><code>formatv</code></a>
+      <li><a href="#fourthv"><code>fourthv</code></a>
+      <li><a href="#funcall-nondeterministic"><code>funcall-nondeterministic</code></a>
+      <li><a href="#funcallinv"><code>funcallinv</code></a>
+      <li><a href="#funcallv"><code>funcallv</code></a>
+      <li><a href="#global"><code>global</code></a>
+      <li><a href="#ground?"><code>ground?</code></a>
+      <li><a href="#ifv"><code>ifv</code></a>
+      <li><a href="#impliesv"><code>impliesv</code></a>
+      <li><a href="#integerpv"><code>integerpv</code></a>
+      <li><a href="#intersectionv"><code>intersectionv</code></a>
+      <li><a href="#ith-value"><code>ith-value</code></a>
+      <li><a href="#known?"><code>known?</code></a>
+      <li><a href="#lengthv"><code>lengthv</code></a>
+      <li><a href="#linear-force"><code>linear-force</code></a>
+      <li><a href="#listpv"><code>listpv</code></a>
+      <li><a href="#local"><code>local</code></a>
+      <li><a href="#local-output"><code>local-output</code></a>
+      <li><a href="#make-arrayv"><code>make-arrayv</code></a>
+      <li><a href="#make-equal"><code>make-equal</code></a>
+      <li><a href="#make-instancev"><code>make-instancev</code></a>
+      <li><a href="#make-listv"><code>make-listv</code></a>
+      <li><a href="#make-variable"><code>make-variable</code></a>
+      <li><a href="#mapcarv"><code>mapcarv</code></a>
+      <li><a href="#maplistv"><code>maplistv</code></a>
+      <li><a href="#maxv"><code>maxv</code></a>
+      <li><a href="#memberv"><code>memberv</code></a>
+      <li><a href="#minv"><code>minv</code></a>
+      <li><a href="#multiple-value-call-nondeterministic"><code>multiple-value-call-nondeterministic</code></a>
+      <li><a href="#necessarily?"><code>necessarily?</code></a>
+      <li><a href="#nondeterministic-function?"><code>nondeterministic-function?</code></a>
+      <li><a href="#not-equalv"><code>not-equalv</code></a>
+      <li><a href="#notanyv"><code>notanyv</code></a>
+      <li><a href="#noteveryv"><code>noteveryv</code></a>
+      <li><a href="#notv"><code>notv</code></a>
+      <li><a href="#nthv"><code>nthv</code></a>
+      <li><a href="#numberpv"><code>numberpv</code></a>
+      <li><a href="#objectp"><code>objectp</code></a>
+      <li><a href="#one-value"><code>one-value</code></a>
+      <li><a href="#orv"><code>orv</code></a>
+      <li><a href="#possibly?"><code>possibly?</code></a>
+      <li><a href="#print-values"><code>print-values</code></a>
+      <li><a href="#purge"><code>purge</code></a>
+      <li><a href="#range-size"><code>range-size</code></a>
+      <li><a href="#realpv"><code>realpv</code></a>
+      <li><a href="#reconcile"><code>reconcile</code></a>
+      <li><a href="#reorder"><code>reorder</code></a>
+      <li><a href="#restv"><code>restv</code></a>
+      <li><a href="#secondv"><code>secondv</code></a>
+      <li><a href="#set-equalv"><code>set-equalv</code></a>
+      <li><a href="#setq-domains"><code>setq-domains</code></a>
+      <li><a href="#slot-exists-pv"><code>slot-exists-pv</code></a>
+      <li><a href="#slot-names-of"><code>slot-names-of</code></a>
+      <li><a href="#slot-valuev"><code>slot-valuev</code></a>
+      <li><a href="#solution"><code>solution</code></a>
+      <li><a href="#somev"><code>somev</code></a>
+      <li><a href="#static-ordering"><code>static-ordering</code></a>
+      <li><a href="#stringpv"><code>stringpv</code></a>
+      <li><a href="#subseqv"><code>subseqv</code></a>
+      <li><a href="#subsetpv"><code>subsetpv</code></a>
+      <li><a href="#symbolpv"><code>symbolpv</code></a>
+      <li><a href="#template"><code>template</code></a>
+      <li><a href="#thirdv"><code>thirdv</code></a>
+      <li><a href="#typepv"><code>typepv</code></a>
+      <li><a href="#unionv"><code>unionv</code></a>
+      <li><a href="#unwedge-screamer"><code>unwedge-screamer</code></a>
+      <li><a href="#unwind-trail"><code>unwind-trail</code></a>
+      <li><a href="#value-of"><code>value-of</code></a>
+      <li><a href="#when-failing"><code>when-failing</code></a>
+    </ol>
+  <li><a href="#ack">Acknowledgements</a>
+</ol>
+
+<br>&nbsp;<br><h3><a class=none name="download">Download</a></h3>
+
+SCREAMER+ together with this documentation can be downloaded from <a
+href="http://weitz.de/files/screamer+.tar.gz">http://weitz.de/files/screamer+.tar.gz</a>. The
+current version is 0.1.0.
+
+<br>&nbsp;<br><h3><a class=none name="dictionary">The SCREAMER+ dictionary</a></h3>
+
+
+
+<!-- Entry for *DYNAMIC-EXTENT?* -->
+
+<p><br>[Special variable]<br><a class=none name='*dynamic-extent?*'><b>*dynamic-extent?*</b></a>
+<blockquote><br>
+
+Set to T to enable the dynamic extent optimization, NIL to
+disable it. Default is platform dependent.
+
+</blockquote>
+
+<!-- End of entry for *DYNAMIC-EXTENT?* -->
+
+
+<!-- Entry for *ENUMERATION-LIMIT* -->
+
+<p><br>[Special variable]<br><a class=none name='*enumeration-limit*'><b>*enumeration-limit*</b></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for *ENUMERATION-LIMIT* -->
+
+
+<!-- Entry for *MAXIMUM-DISCRETIZATION-RANGE* -->
+
+<p><br>[Special variable]<br><a class=none name='*maximum-discretization-range*'><b>*maximum-discretization-range*</b></a>
+<blockquote><br>
+
+Discretize integer variables whose range is not greater than this number.
+Discretize all integer variables if NIL. Must be an integer or NIL.
+
+</blockquote>
+
+<!-- End of entry for *MAXIMUM-DISCRETIZATION-RANGE* -->
+
+
+<!-- Entry for *MINIMUM-SHRINK-RATIO* -->
+
+<p><br>[Special variable]<br><a class=none name='*minimum-shrink-ratio*'><b>*minimum-shrink-ratio*</b></a>
+<blockquote><br>
+
+Ignore propagations which reduce the range of a variable by less than this
+ratio.
+
+</blockquote>
+
+<!-- End of entry for *MINIMUM-SHRINK-RATIO* -->
+
+
+<!-- Entry for *SCREAMER-VERSION* -->
+
+<p><br>[Special variable]<br><a class=none name='*screamer-version*'><b>*screamer-version*</b></a>
+<blockquote><br>
+
+The version of Screamer which is loaded. This is currently still 3.20,
+while we&#039;re considering how to express versions for this copy of Screamer in
+the future.
+
+</blockquote>
+
+<!-- End of entry for *SCREAMER-VERSION* -->
+
+
+<!-- Entry for *STRATEGY* -->
+
+<p><br>[Special variable]<br><a class=none name='*strategy*'><b>*strategy*</b></a>
+<blockquote><br>
+
+Strategy to use for FUNCALLV and APPLYV. Either :GFC for Generalized
+Forward Checking, or :AC for Arc Consistency. Default is :GFC.
+
+</blockquote>
+
+<!-- End of entry for *STRATEGY* -->
+
+
+<!-- Entry for *V -->
+
+<p><br>[Function]<br><a class=none name='*v'><b>*v</b> <i><tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Constrains its arguments to be numbers. If called with no arugments,
+returns 1. If called with a single argument, returns its value. If called with
+more than two arguments, behaves as nested sequence of two-argument calls:
+
+  (*V X1 X2 ... Xn) = (*V X1 (*V X2 (*V ...)))
+
+When called with two arguments, if both arguments are bound, returns the
+product of their values. If either argument is known to equal zero, returns
+zero. If either argument is known to equal one, returns the value of the other.
+Otherwise returns number variable V.
+
+  * Product of X1 and X2 is constrained to equal V. This includes constraining
+    their bounds appropriately. If it becomes known that cannot be true, FAIL
+    is called.
+
+  * If both arguments are known to be reals, V is constrained to be real.
+
+  * If both arguments are known to be integers, V is constained to be integer.
+
+  * If V is known to be an integer, and either X1 or X2 is known to be real,
+    both X1 and X2 are constrained to be integers.
+
+  * If V is known to be an reals, and either X1 or X2 is known to be real,
+    both X1 and X2 are constrained to be reals.
+
+Note: Numeric contagion rules of Common Lisp are not applied if either
+argument equals zero or one.
+
+</blockquote>
+
+<!-- End of entry for *V -->
+
+
+<!-- Entry for +V -->
+
+<p><br>[Function]<br><a class=none name='+v'><b>+v</b> <i><tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Constrains its arguments to be numbers. Returns 0 if called with no
+arguments. If called with a single argument, returns its value. If called with
+more than two arguments, behaves as nested sequence of two-argument calls:
+
+  (+V X1 X2 ... Xn) = (+V X1 (+V X2 (+V ...)))
+
+When called with two arguments, if both arguments are bound, returns the sum
+of their values. If either argument is known to be zero, returns the value of
+the remaining argument. Otherwise returns number variable V.
+
+  * Sum of X1 and X2 is constrained to equal V. This includes constraining
+    their bounds appropriately. If it becomes known that cannot be true, FAIL
+    is called.
+
+  * If both arguments are known to be reals, V is constrained to be real.
+
+  * If both arguments are known to be integers, V is constained to be integer.
+
+  * If one argument is known to be a non-integer, and the other is known to
+    be a real, V is constrained to be a non-integer.
+
+  * If one argument is known to be a non-real, and the other is known
+    to be a real, V is constrained to be non-real.
+
+Note: Numeric contagion rules of Common Lisp are not applied if either
+argument equals zero.
+
+</blockquote>
+
+<!-- End of entry for +V -->
+
+
+<!-- Entry for -V -->
+
+<p><br>[Function]<br><a class=none name='-v'><b>-v</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Constrains its arguments to be numbers. If called with a single argument,
+behaves as if the two argument call:
+
+  (-V 0 X)
+
+If called with more than two arguments, behaves as nested sequence of
+two-argument calls:
+
+  (-V X1 X2 ... Xn) = (-V X1 (-V X2 (-V ...)))
+
+When called with two arguments, if both arguments are bound, returns the
+difference of their values. If X2 is known to be zero, returns the value of
+X1. Otherwise returns number variable V.
+
+  * Difference of X1 and X2 is constrained to equal V. This includes
+    constraining their bounds appropriately. If it becomes known that cannot
+    be true, FAIL is called.
+
+  * If both arguments are known to be reals, V is constrained to be real.
+
+  * If both arguments are known to be integers, V is constained to be integer.
+
+  * If one argument is known to be a non-integer, and the other is known to
+    be a real, V is constrained to be a non-integer.
+
+  * If one argument is known to be a non-real, and the other is known
+    to be a real, V is constrained to be non-real.
+
+Note: Numeric contagion rules of Common Lisp are not applied if X2 equals zero.
+
+</blockquote>
+
+<!-- End of entry for -V -->
+
+
+<!-- Entry for /=V -->
+
+<p><br>[Function]<br><a class=none name='/=v'><b>/=v</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a boolean value which is constrained to be T if no two arguments
+are numerically equal, and constrained to be NIL if any two or more arguments
+are numerically equal.
+
+This function takes one or more arguments. All of the arguments are restricted
+to be numeric.
+
+Returns T when called with one argument. A call such as (/=V X1 X2 ... Xn)
+with more than two arguments behaves like a conjunction of two argument calls:
+
+  (ANDV (/=V X1 X2) ... (/=V X1 Xn)
+        (/=V X2 X3) ... (/=V X2 Xn)
+        ...
+        (/=V Xi Xi+1 ... (/=V Xi Xn)
+        ...
+        (/=V Xn-1 xn))
+
+When called with two arguments, returns T if X1 is known not to be equal to X2
+at the time of call, NIL if X1 is known to be equal to X2 at the time of
+call, and otherwise a new boolean variable V.
+
+Two numeric values are known not to be equal when their domains are disjoint.
+
+Two real values are known not to be equal when their ranges are disjoint, i.e.
+the upper bound of one is greater than the lower bound of the other.
+
+Two numeric values are known to be equal only when they are both bound and
+equal according to the Common Lisp function =.
+
+When a new variable is created, the values of X1, X2 and V are mutually
+constrained via noticers so that V is equal to T if and only if X1 is known
+not to be equal to X2 and V is equal to NIL if and only if X1 is known to be
+equal to X2.
+
+* If it later becomes known that X1 is not equal to X2, noticers attached to
+  X1 and X2 restrict V to equal T. Likewise, if it later becomes known that X1
+  is equal to X2, noticers attached to X1 and X2 restrict V to equal NIL.
+
+* If V ever becomes known to equal T then a noticer attached to V restricts X1
+  to not be equal to X2. Likewise, if V ever becomes known to equal NIL then a
+  noticer attached to V restricts X1 to be equal to X2.
+
+Restricting two values X1 and X2 to be equal is performed by attaching
+noticers to X1 and X2. These noticers continually restrict the domains of X1
+and X2 to be equivalent sets (using the Common Lisp function = as a test
+function) as their domains are restricted. Furthermore, if X1 is known to be
+real then the noticer attached to X2 continually restrict the upper bound of
+X1 to be no higher than the upper bound of X2 and the lower bound of X1 to be
+no lower than the lower bound of X2. The noticer of X2 performs a symmetric
+restriction on the bounds of X1 if it is known to be real.
+
+Restricting two values X1 and X2 to not be equal is also performed by
+attaching noticers to X1 and X2. These noticers however, do not restrict the
+domains or ranges of X1 or X2. They simply monitor their continually
+restrictions and fail when any assertion causes X1 to be known to be equal to
+X2.
+
+</blockquote>
+
+<!-- End of entry for /=V -->
+
+
+<!-- Entry for /V -->
+
+<p><br>[Function]<br><a class=none name='/v'><b>/v</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Constrains its arguments to be numbers. If called with a single argument,
+behaves as the two argument call:
+
+  (/V 1 X)
+
+If called with more than two arguments, behaves as nested sequence of
+two-argument calls:
+
+  (/V X1 X2 ... Xn) = (/V ... (/V (/V X1 X2) X3) ... Xn)
+
+When called with two arguments, if both arguments are bound, returns the
+division of their values. If X1 is known to equal zero, returns 0. If X2 is
+known to equal zero, FAIL is called. If X2 is known to equal one, returns the
+value of X1. Otherwise returns number variable V.
+
+  * Division of X1 and X2 is constrained to equal V. This includes
+    constraining their bounds appropriately. If it becomes known that cannot
+    be true, FAIL is called.
+
+  * If both arguments are known to be reals, V is constrained to be real.
+
+  * If both arguments are known to be integers, V is constained to be integer.
+
+  * If V is known to be an integer, and either X1 or X2 is known to be real,
+    both X1 and X2 are constrained to be integers.
+
+  * If V is known to be an reals, and either X1 or X2 is known to be real,
+    both X1 and X2 are constrained to be reals.
+
+Note: Numeric contagion rules of Common Lisp are not applied if X1 equals zero
+or X2 equals one.
+
+</blockquote>
+
+<!-- End of entry for /V -->
+
+
+<!-- Entry for <=V -->
+
+<p><br>[Function]<br><a class=none name='<=v'><b><=v</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+All arguments are constrained to be real. Returns T when called with one
+argument. A call such as (&lt;=V X1 X2 ... Xn) with more than two arguments
+behaves like a conjunction of two argument calls:
+
+  (ANDV (&lt;=V X1 X2) ... (&lt;=V Xi Xi+1) ... (&lt;=V Xn-1 Xn))
+
+When called with two arguments, returns T if X1 is know to be less than or equal to X2
+at the time of the call, NIL if X1 is known to be greater than X2, and otherwise a new
+boolean variable V.
+
+Values of V, X1, and X2 are mutually constrained:
+
+ * V is equal to T iff X1 is known to be less than or equal to X2.
+
+ * V is equal to NIL iff X2 is known to be greater than X2.
+
+ * If V is known to be T, X1 is constrained to be less than or equal to X2.
+
+ * If V is known to be NIL, X1 is constrained to be greater than X2.
+
+</blockquote>
+
+<!-- End of entry for <=V -->
+
+
+<!-- Entry for <V -->
+
+<p><br>[Function]<br><a class=none name='<v'><b><v</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a boolean value which is constrained to be T if each argument Xi is
+less than the following argument Xi+1 and constrained to be NIL if some
+argument Xi is greater than or equal to the following argument Xi+1.
+
+This function takes one or more arguments. All of the arguments are restricted
+to be real.
+
+Returns T when called with one argument. A call such as (&lt;V X1 X2 ... Xn)
+with more than two arguments behaves like a conjunction of two argument calls:
+
+  (ANDV (&lt;V X1 X2) ... (&lt;V Xi Xi+1 ) ... (&lt;V Xn-1 Xn))
+
+When called with two arguments, returns T if X1 is known to be less than X2 at
+the time of call, NIL if X1 is known to be greater than or equal to X2 at the
+time of call, and otherwise a new boolean variable V.
+
+A real value X1 is known to be less than a real value X2 if X1 has an upper
+bound, X2 has a lower bound and the upper bound of X1 is less than the lower
+bound of X2.
+
+A real value X1 is known to be greater than or equal to a real value X2 if X1
+has a lower bound, X2 has an upper bound and the lower bound of X1 is greater
+than or equal to the upper bound of X2.
+
+When a new variable is created, the values of X1, X2 and v are mutually
+constrained via noticers so that V is equal to T if and only if X1 is known to
+be less than X2 and V is equal to NIL if and only if X1 is known to be greater
+than or equal to X2.
+
+* If it later becomes known that X1 is less than X2, noticers attached to X1
+  and X2 restrict V to equal T. Likewise, if it later becomes known that X1 is
+  greater than or equal to X2, noticers attached to X1 and X2 restrict V to
+  equal NIL.
+
+* If V ever becomes known to equal T then a noticer attached to V restricts X1
+  to be less than X2. Likewise, if V ever becomes known to equal NIL then a
+  noticer attached to V restricts X1 to be greater than or equal to X2.
+
+Restricting a real value X1 to be less than a real value X2 is performed by
+attaching noticers to X1 and X2. The noticer attached to X1 continually
+restricts the lower bound of X2 to be no lower than the upper bound of X1 if
+X1 has an upper bound. The noticer attached to X2 continually restricts the
+upper bound of X1 to be no higher than the lower bound of X2 if X2 has a lower
+bound. Since these restrictions only guarantee that X1 be less than or equal
+to X2, the constraint that X1 be strictly less than X2 is enforced by having
+the noticers fail when both X1 and X2 become known to be equal.
+
+Restricting a real value X1 to be greater than or equal to a real value X2 is
+performed by an analogous set of noticers without this last equality check.
+
+</blockquote>
+
+<!-- End of entry for <V -->
+
+
+<!-- Entry for =V -->
+
+<p><br>[Function]<br><a class=none name='=v'><b>=v</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a boolean value which is constrained to be T if all of the
+arguments are numerically equal, and constrained to be NIL if two or more of
+the arguments numerically differ.
+
+This function takes one or more arguments. All of the arguments are restricted
+to be numeric.
+
+Returns T when called with one argument. A call such as (=V X1 X2 ... Xn)
+with more than two arguments behaves like a conjunction of two argument calls:
+
+  (ANDV (=V X1 X2) ... (=V Xi Xi+1) ... (=V Xn-1 Xn))
+
+When called with two arguments, returns T if X1 is known to be equal to X2 at
+the time of call, NIL if X1 is known not to be equal to X2 at the time of
+call, and a new boolean variable V if is not known if the two values are
+equal.
+
+Two numeric values are known to be equal only when they are both bound and
+equal according to the Common Lisp function =.
+
+Two numeric values are known not to be equal when their domains are disjoint.
+Furthermore, two real values are known not to be equal when their ranges are
+disjoint, i.e. the upper bound of one is greater than the lower bound of the
+other.
+
+When a new variable is created, the values of X1, X2, and V are mutually
+constrained via noticers so that V is equal to T if and only if X1 is known to
+be equal to X2, and V is equal to NIL if and only if X1 is known not to be
+equal to X2.
+
+* If it later becomes known that X1 is equal to X2 noticers attached to X1 and
+  X2 restrict V to equal T. Likewise if it later becomes known that X1 is not
+  equal to X2 noticers attached to X1 and X2 restrict V to equal NIL.
+
+* If V ever becomes known to equal T then a noticer attached to V restricts X1
+  to be equal to X2. Likewise if V ever becomes known to equal NIL then a
+  noticer attached to V restricts X1 not to be equal to X2.
+
+* If X1 is known to be real then the noticer attached to X2 continually
+  restrict the upper bound of X1 to be no higher than the upper bound of X2
+  and the lower bound of X1 to be no lower than the lower bound of X2.
+  Likewise for bounds of X1 if X2 is known to be real.
+
+Restricting two values x1 and x2 to be equal is performed by attaching
+noticers to x1 and x2. These noticers continually restrict the domains of x1
+and x2 to be equivalent sets (using the Common Lisp function = as a test
+function) as their domains are restricted.
+
+Restricting two values X1 and X2 to not be equal is also performed by
+attaching noticers to X1 and X2. These noticers however do not restrict the
+domains or ranges of X1 or X2. They simply monitor their continually
+restrictions and fail when any assertion causes X1 to be known to be equal to
+X2.
+
+</blockquote>
+
+<!-- End of entry for =V -->
+
+
+<!-- Entry for >=V -->
+
+<p><br>[Function]<br><a class=none name='>=v'><b>>=v</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+All arguments are constrained to be real. Returns T when called
+with one argument. A call such as (&gt;=V X1 X2 ... Xn) with more than two
+arguments behaves like a conjunction of two argument calls:
+
+  (ANDV (&gt;=V X1 X2) ... (&gt;=V Xi Xi+1) ... (&gt;=V Xn-1 Xn))
+
+When called with two arguments, returns T if X1 is know to be greater than or
+equal to X2 at the time of the call, NIL if X1 is known to be less than X2,
+and otherwise a new boolean variable V.
+
+Values of V, X1, and X2 are mutually constrained:
+
+ * V is equal to T iff X1 is known to be greater than or equal to X2.
+
+ * V is equal to NIL iff X2 is know to be less than X2.
+
+ * If V is known to be T, X1 is constrained to be greater than or equal to X2.
+
+ * If V is known to be NIL, X1 is constrained to be less than X2.
+
+</blockquote>
+
+<!-- End of entry for >=V -->
+
+
+<!-- Entry for >V -->
+
+<p><br>[Function]<br><a class=none name='>v'><b>>v</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+All arguments are constrained to be real. Returns T when called with one
+argument. A call such as (&gt;V X1 X2 ... Xn) with more than two arguments
+behaves like a conjunction of two argument calls:
+
+  (ANDV (&gt; X1 X2) ... (&gt; Xi Xi+1) ... (&gt; Xn-1 Xn))
+
+When called with two arguments, returns T if X1 is know to be greater than X2
+at the time of the call, NIL if X1 is known to be less than or equal to X2,
+and otherwise a new boolean variable V.
+
+Values of V, X1, and X2 are mutually constrained:
+
+ * V is equal to T iff X1 is known to be greater than X2.
+
+ * V is equal to NIL iff X2 is known to be less than or equal to X2.
+
+ * If V is known to be T, X1 is constrained to be greater than X2.
+
+ * If V is known to be NIL, X1 is constrained to be less than or equal to X2.
+
+</blockquote>
+
+<!-- End of entry for >V -->
+
+
+<!-- Entry for A-BOOLEAN -->
+
+<p><br>[Function]<br><a class=none name='a-boolean'><b>a-boolean</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Equivalent to (EITHER T NIL).
+
+</blockquote>
+
+<!-- End of entry for A-BOOLEAN -->
+
+
+<!-- Entry for A-BOOLEANV -->
+
+<p><br>[Function]<br><a class=none name='a-booleanv'><b>a-booleanv</b> <i><tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a boolean variable.
+
+</blockquote>
+
+<!-- End of entry for A-BOOLEANV -->
+
+
+<!-- Entry for A-CONSV -->
+
+<p><br>[Macro]<br><a class=none name='a-consv'><b>a-consv</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for A-CONSV -->
+
+
+<!-- Entry for A-LISTV -->
+
+<p><br>[Macro]<br><a class=none name='a-listv'><b>a-listv</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for A-LISTV -->
+
+
+<!-- Entry for A-MEMBER-OF -->
+
+<p><br>[Function]<br><a class=none name='a-member-of'><b>a-member-of</b> <i>sequence</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Nondeterministically returns an element of SEQUENCE. The elements are
+returned in the order that they appear in SEQUENCE. The SEQUENCE must be
+either a list or a vector.
+
+</blockquote>
+
+<!-- End of entry for A-MEMBER-OF -->
+
+
+<!-- Entry for A-MEMBER-OFV -->
+
+<p><br>[Function]<br><a class=none name='a-member-ofv'><b>a-member-ofv</b> <i>values <tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a variable whose value is constrained to be one of VALUES.
+VALUES can be either a vector or a list designator.
+
+</blockquote>
+
+<!-- End of entry for A-MEMBER-OFV -->
+
+
+<!-- Entry for A-NUMBERV -->
+
+<p><br>[Function]<br><a class=none name='a-numberv'><b>a-numberv</b> <i><tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a variable whose value is constained to be a number.
+
+</blockquote>
+
+<!-- End of entry for A-NUMBERV -->
+
+
+<!-- Entry for A-REAL-ABOVEV -->
+
+<p><br>[Function]<br><a class=none name='a-real-abovev'><b>a-real-abovev</b> <i>low <tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a real variable whose value is constrained to be greater than or equal to LOW.
+
+</blockquote>
+
+<!-- End of entry for A-REAL-ABOVEV -->
+
+
+<!-- Entry for A-REAL-BELOWV -->
+
+<p><br>[Function]<br><a class=none name='a-real-belowv'><b>a-real-belowv</b> <i>high <tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a real variable whose value is constrained to be less than or equal to HIGH.
+
+</blockquote>
+
+<!-- End of entry for A-REAL-BELOWV -->
+
+
+<!-- Entry for A-REAL-BETWEENV -->
+
+<p><br>[Function]<br><a class=none name='a-real-betweenv'><b>a-real-betweenv</b> <i>low high <tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a real variable whose value is constrained to be greater than or
+equal to low and less than or equal to high. If the resulting real variable is
+bound, its value is returned instead. Fails if it is known that low is greater
+than high at the time of call.
+
+The expression (A-REAL-BETWEENV LOW HIGH) is an abbreviation for:
+
+ (LET ((V (MAKE-VARIABLE)))
+    (ASSERT! (REALPV V))
+    (ASSERT! (&gt;=V V LOW))
+    (ASSERT! (&lt;=V V HIGH))
+    (VALUE-OF V))
+
+
+</blockquote>
+
+<!-- End of entry for A-REAL-BETWEENV -->
+
+
+<!-- Entry for A-REALV -->
+
+<p><br>[Function]<br><a class=none name='a-realv'><b>a-realv</b> <i><tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns a real variable.
+
+</blockquote>
+
+<!-- End of entry for A-REALV -->
+
+
+<!-- Entry for A-STRINGV -->
+
+<p><br>[Macro]<br><a class=none name='a-stringv'><b>a-stringv</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for A-STRINGV -->
+
+
+<!-- Entry for A-SYMBOLV -->
+
+<p><br>[Macro]<br><a class=none name='a-symbolv'><b>a-symbolv</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for A-SYMBOLV -->
+
+
+<!-- Entry for A-TYPED-VARV -->
+
+<p><br>[Function]<br><a class=none name='a-typed-varv'><b>a-typed-varv</b> <i>type</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for A-TYPED-VARV -->
+
+
+<!-- Entry for ALL-DIFFERENTV -->
+
+<p><br>[Function]<br><a class=none name='all-differentv'><b>all-differentv</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for ALL-DIFFERENTV -->
+
+
+<!-- Entry for ALL-VALUES -->
+
+<p><br>[Macro]<br><a class=none name='all-values'><b>all-values</b> <i>declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Evaluates BODY as an implicit PROGN and returns a list of all of the
+nondeterministic values yielded by the it.
+
+These values are produced by repeatedly evaluating the body and backtracking
+to produce the next value, until the body fails and yields no further values.
+
+Accordingly, local side effects performed by the body while producing each
+value are undone before attempting to produce subsequent values, and all local
+side effects performed by the body are undone upon exit from ALL-VALUES.
+
+Returns a list containing NIL if BODY is empty.
+
+An ALL-VALUES expression can appear in both deterministic and nondeterministic
+contexts. Irrespective of what context the ALL-VALUES appears in, the BODY is
+always in a nondeterministic context. An ALL-VALUES expression itself is
+always deterministic.
+
+ALL-VALUES is analogous to the `bagof&#039; primitive in Prolog.
+
+</blockquote>
+
+<!-- End of entry for ALL-VALUES -->
+
+
+<!-- Entry for AN-INTEGER -->
+
+<p><br>[Function]<br><a class=none name='an-integer'><b>an-integer</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Generator yielding integers in sequence 0, 1, -1, 2, -2, ...
+
+</blockquote>
+
+<!-- End of entry for AN-INTEGER -->
+
+
+<!-- Entry for AN-INTEGER-ABOVE -->
+
+<p><br>[Function]<br><a class=none name='an-integer-above'><b>an-integer-above</b> <i>low</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Generator yielding integers starting from LOW and continuing sequentially
+in increasing direction.
+
+</blockquote>
+
+<!-- End of entry for AN-INTEGER-ABOVE -->
+
+
+<!-- Entry for AN-INTEGER-ABOVEV -->
+
+<p><br>[Function]<br><a class=none name='an-integer-abovev'><b>an-integer-abovev</b> <i>low <tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns an integer variable whose value is constrained to be greater than
+or equal to LOW.
+
+</blockquote>
+
+<!-- End of entry for AN-INTEGER-ABOVEV -->
+
+
+<!-- Entry for AN-INTEGER-BELOW -->
+
+<p><br>[Function]<br><a class=none name='an-integer-below'><b>an-integer-below</b> <i>high</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Generator yielding integers starting from HIGH and continuing sequentially
+in decreasing direction.
+
+</blockquote>
+
+<!-- End of entry for AN-INTEGER-BELOW -->
+
+
+<!-- Entry for AN-INTEGER-BELOWV -->
+
+<p><br>[Function]<br><a class=none name='an-integer-belowv'><b>an-integer-belowv</b> <i>high <tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns an integer variable whose value is constrained to be less than or
+equal to HIGH.
+
+</blockquote>
+
+<!-- End of entry for AN-INTEGER-BELOWV -->
+
+
+<!-- Entry for AN-INTEGER-BETWEEN -->
+
+<p><br>[Function]<br><a class=none name='an-integer-between'><b>an-integer-between</b> <i>low high</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Nondeterministically returns an integer in the closed interval [LOW, HIGH].
+The results are returned in ascending order. Both LOW and HIGH must be
+integers. Fails if the interval does not contain any integers.
+
+</blockquote>
+
+<!-- End of entry for AN-INTEGER-BETWEEN -->
+
+
+<!-- Entry for AN-INTEGER-BETWEENV -->
+
+<p><br>[Function]<br><a class=none name='an-integer-betweenv'><b>an-integer-betweenv</b> <i>low high <tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns an integer variable whose value is constrained to be greater than
+or equal to LOW and less than or equal to HIGH. If the resulting integer
+variable is bound, its value is returned instead. Fails if it is known that
+there is no integer between LOW and HIGH at the time of call.
+
+The expression (AN-INTEGER-BETWEENV LOW HIGH) is an abbreviation for:
+
+ (LET ((V (MAKE-VARIABLE)))
+    (ASSERT! (INTEGERPV V))
+    (ASSERT! (&gt;=V V LOW))
+    (ASSERT! (&lt;=V V HIGH))
+    (VALUE-OF v))
+
+
+</blockquote>
+
+<!-- End of entry for AN-INTEGER-BETWEENV -->
+
+
+<!-- Entry for AN-INTEGERV -->
+
+<p><br>[Function]<br><a class=none name='an-integerv'><b>an-integerv</b> <i><tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns an integer variable.
+
+</blockquote>
+
+<!-- End of entry for AN-INTEGERV -->
+
+
+<!-- Entry for ANDV -->
+
+<p><br>[Function]<br><a class=none name='andv'><b>andv</b> <i><tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Restricts each argument to be boolean.
+
+Returns T if called with no arguments, or if all arguments are known to equal
+T after being restricted to be boolean, and returns NIL if any argument is
+known to equal NIL after this restriction.
+
+Otherwise returns a boolean variable V. The values of the arguments and V are
+mutually constrained:
+
+ * If any argument is later known to equal NIL value of V becomes NIL.
+
+ * If all arguments are later known to equal T, value of V becomes T.
+
+ * If value of V is later known to equal T, all arguments become T.
+
+ * If value of V is later known to equal NIL, and all but one argument is
+   known to be T, the remaining argument becomes NIL.
+
+Note that unlike CL:AND, ANDV is a function and always evaluates all its
+arguments. Secondly, any non-boolean argument causes it to fail.
+
+</blockquote>
+
+<!-- End of entry for ANDV -->
+
+
+<!-- Entry for APPENDV -->
+
+<p><br>[Function]<br><a class=none name='appendv'><b>appendv</b> <i>x y <tt>&amp;rest</tt> r</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for APPENDV -->
+
+
+<!-- Entry for APPLY-NONDETERMINISTIC -->
+
+<p><br>[Function]<br><a class=none name='apply-nondeterministic'><b>apply-nondeterministic</b> <i>function <tt>&amp;rest</tt> arguments</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Analogous to the CL:APPLY, except FUNCTION can be either a nondeterministic
+function, or an ordinary deterministic function.
+
+You must use APPLY-NONDETERMINISTIC to apply a nondeterministic function. An
+error is signalled if a nondeterministic function object is used with
+CL:APPLY.
+
+You can use APPLY-NONDETERMINISTIC to apply either a deterministic or
+nondeterministic function, though even if all of the ARGUMENTS are
+deterministic and FUNCTION is a deterministic function object, the call
+expression will still be nondeterministic (with presumably a single value),
+since it is impossible to determine at compile time that a given call to
+APPLY-NONDETERMINISTIC will be passed only deterministic function objects for
+function.
+
+</blockquote>
+
+<!-- End of entry for APPLY-NONDETERMINISTIC -->
+
+
+<!-- Entry for APPLY-SUBSTITUTION -->
+
+<p><br>[Function]<br><a class=none name='apply-substitution'><b>apply-substitution</b> <i>x <tt>&amp;aux</tt> retobj</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for APPLY-SUBSTITUTION -->
+
+
+<!-- Entry for APPLYV -->
+
+<p><br>[Function]<br><a class=none name='applyv'><b>applyv</b> <i>f x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+F must be a deterministic function. If all arguments X are bound, returns
+the result of calling F on the dereferenced values of spread arguments.
+
+Otherwise returns a fresh variable V, constrained to be equal to the result
+of calling F on the dereferenced values of arguments.
+
+Additionally, if all but one of V and the argument variables become known, and
+the remaining variable has a finite domain, then that domain is further
+restricted to be consistent with other arguments.
+
+</blockquote>
+
+<!-- End of entry for APPLYV -->
+
+
+<!-- Entry for AREFV -->
+
+<p><br>[Function]<br><a class=none name='arefv'><b>arefv</b> <i>array <tt>&amp;rest</tt> subscripts</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for AREFV -->
+
+
+<!-- Entry for ASSERT! -->
+
+<p><br>[Macro]<br><a class=none name='assert!'><b>assert!</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Restricts X to T. No meaningful result is returned. The argument X can be
+either a variable or a non-variable.
+
+This assertion may cause other assertions to be made due to noticers attached
+to X.
+
+A call to ASSERT! fails if X is known not to equal T prior to the assertion or
+if any of the assertions performed by the noticers result in failure.
+
+Except for the fact that one cannot write #&#039;ASSERT!, ASSERT! behaves like a
+function, even though it is implemented as a macro.
+
+The reason it is implemented as a macro is to allow a number of compile time
+optimizations. Expressions like (ASSERT! (NOTV X)), (ASSERT! (NUMBERPV X))
+and (ASSERT! (NOTV (NUMBERV X))) are transformed into calls to functions
+internal to Screamer which eliminate the need to create the boolean
+variable(s) normally returned by functions like NOTV and NUMBERPV. Calls to
+the functions NUMBERPV, REALPV, INTEGERPV, MEMBERV, BOOLEANPV, =V, &lt;V, &lt;=V,
+&gt;V, &gt;=V, /=V, NOTV, FUNCALLV, APPLYV and EQUALV which appear directly nested
+in a call to ASSERT!, or directly nested in a call to NOTV which is in turn
+directly nested in a call to ASSERT!, are similarly transformed.
+
+</blockquote>
+
+<!-- End of entry for ASSERT! -->
+
+
+<!-- Entry for AT-LEASTV -->
+
+<p><br>[Macro]<br><a class=none name='at-leastv'><b>at-leastv</b> <i>n f <tt>&amp;rest</tt> x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for AT-LEASTV -->
+
+
+<!-- Entry for AT-MOSTV -->
+
+<p><br>[Macro]<br><a class=none name='at-mostv'><b>at-mostv</b> <i>n f <tt>&amp;rest</tt> x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for AT-MOSTV -->
+
+
+<!-- Entry for BAG-EQUALV -->
+
+<p><br>[Function]<br><a class=none name='bag-equalv'><b>bag-equalv</b> <i>x y</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for BAG-EQUALV -->
+
+
+<!-- Entry for BEST-VALUE -->
+
+<p><br>[Macro]<br><a class=none name='best-value'><b>best-value</b> <i>form1 objective-form <tt>&amp;optional</tt> form2</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+First evaluates OBJECTIVE-FORM, which should evaluate to constraint variable V.
+
+Then repeatedly evaluates FORM1 in non-deterministic context till it fails. If
+previous round of evaluation produced an upper bound B for V, the during the
+next round any change to V must provide an upper bound higher than B, or that
+that change fails.
+
+If the last successful evaluation of FORM produced an upper bound for V,
+returns a list of two elements: the the primary value of FORM1 from that
+round, and the upper bound of V.
+
+Otherwise if FORM2 is provided, returns the result of evaluating it, or else
+calls fails.
+
+Note: this documentation string is entirely reverse-engineered. Lacking
+information on just how BEST-VALUE was intended to work, it is hard to tell
+what is a bug, an accident of implementation, and what is a feature. If you
+have any insight into BEST-VALUE, please send email to
+nikodemus@random-state.net.
+
+</blockquote>
+
+<!-- End of entry for BEST-VALUE -->
+
+
+<!-- Entry for BOOLEANP -->
+
+<p><br>[Function]<br><a class=none name='booleanp'><b>booleanp</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns true iff X is T or NIL.
+
+</blockquote>
+
+<!-- End of entry for BOOLEANP -->
+
+
+<!-- Entry for BOOLEANPV -->
+
+<p><br>[Function]<br><a class=none name='booleanpv'><b>booleanpv</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+The expression (BOOLEANPV X) is an abbreviation for (MEMBERV X &#039;(T NIL)).
+
+</blockquote>
+
+<!-- End of entry for BOOLEANPV -->
+
+
+<!-- Entry for BOUND? -->
+
+<p><br>[Function]<br><a class=none name='bound?'><b>bound?</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns T if X is not a variable or if X is a bound variable. Otherwise
+returns NIL. BOUND? is analogous to the extra-logical predicates `var&#039; and
+`nonvar&#039; typically available in Prolog.
+
+</blockquote>
+
+<!-- End of entry for BOUND? -->
+
+
+<!-- Entry for CAREFULLY -->
+
+<p><br>[Macro]<br><a class=none name='carefully'><b>carefully</b> <i>declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for CAREFULLY -->
+
+
+<!-- Entry for CARV -->
+
+<p><br>[Function]<br><a class=none name='carv'><b>carv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for CARV -->
+
+
+<!-- Entry for CDRV -->
+
+<p><br>[Function]<br><a class=none name='cdrv'><b>cdrv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for CDRV -->
+
+
+<!-- Entry for CLASS-NAMEV -->
+
+<p><br>[Function]<br><a class=none name='class-namev'><b>class-namev</b> <i>obj</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for CLASS-NAMEV -->
+
+
+<!-- Entry for CLASS-OFV -->
+
+<p><br>[Function]<br><a class=none name='class-ofv'><b>class-ofv</b> <i>obj</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for CLASS-OFV -->
+
+
+<!-- Entry for CLASSPV -->
+
+<p><br>[Function]<br><a class=none name='classpv'><b>classpv</b> <i>obj name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for CLASSPV -->
+
+
+<!-- Entry for CONSPV -->
+
+<p><br>[Macro]<br><a class=none name='conspv'><b>conspv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for CONSPV -->
+
+
+<!-- Entry for CONSTRAINT-FN -->
+
+<p><br>[Function]<br><a class=none name='constraint-fn'><b>constraint-fn</b> <i>f</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for CONSTRAINT-FN -->
+
+
+<!-- Entry for CONSV -->
+
+<p><br>[Function]<br><a class=none name='consv'><b>consv</b> <i>x y</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for CONSV -->
+
+
+<!-- Entry for COUNT-FAILURES -->
+
+<p><br>[Macro]<br><a class=none name='count-failures'><b>count-failures</b> <i>declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Executes BODY keeping track of the number of times FAIL has been called
+without unwinding from BODY. After BODY completes, reports the number of
+failures to *STANDARD-OUTPUT* before returning values from BODY.
+
+</blockquote>
+
+<!-- End of entry for COUNT-FAILURES -->
+
+
+<!-- Entry for COUNT-TRUES -->
+
+<p><br>[Function]<br><a class=none name='count-trues'><b>count-trues</b> <i><tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns the number of time a non-NIL value occurs in its arguments.
+
+</blockquote>
+
+<!-- End of entry for COUNT-TRUES -->
+
+
+<!-- Entry for COUNT-TRUESV -->
+
+<p><br>[Function]<br><a class=none name='count-truesv'><b>count-truesv</b> <i><tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Constrains all its arguments to be boolean. If each argument is known, returns
+the number of T arguments. Otherwise returns a fresh constraint variable V.
+
+V and arguments are mutually constrained:
+
+ * Lower bound of V is the number arguments known to be T.
+
+ * Upper bound of V is the number arguments minus the number of arguments known to be NIL.
+
+ * If lower bound of V is constrained to be equal to number of arguments known
+   to be NIL, all arguments not known to be NIL are constrained to be T.
+
+ * If Upper bound of V is constrained to be equal to number of arguments known
+   to be T, all arguments not known to be T are constrained to be NIL.
+
+</blockquote>
+
+<!-- End of entry for COUNT-TRUESV -->
+
+
+<!-- Entry for DECIDE -->
+
+<p><br>[Macro]<br><a class=none name='decide'><b>decide</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Restricts X to a be boolean. After X is restricted a nondeterministic
+choice is made. For one branch, X is restricted to equal T and (DECIDE X)
+returns T as a result. For the other branch, X is restricted to equal NIL and
+(DECIDE X) returns NIL as a result. The argument X can be either a variable
+or a non-variable.
+
+The initial restriction to boolean may cause other assertions to be made due
+to noticers attached to X. A call to DECIDE immediately fails if X is known
+not to be boolean prior to the assertion or if any of the assertions performed
+by the noticers result in failure.
+
+Restricting X to be boolean attaches a noticer on X so that any subsequent
+assertion which restricts X to be non-boolean will fail.
+
+Except for implementation optimizations (DECIDE X) is equivalent to:
+
+  (EITHER (PROGN (ASSERT! X) T) (PROGN (ASSERT! (NOTV X)) NIL))
+
+Except for the fact that one cannot write #&#039;DECIDE, DECIDE behaves like a
+function, even though it is implemented as a macro.
+
+The reason it is implemented as a macro is to allow a number of compile time
+optimizations. Expressions like (DECIDE (NOTV X)), (DECIDE (NUMBERPV X))
+and (DECIDE (NOTV (NUMBERPV X))) are transformed into calls to functions
+internal to Screamer which eliminate the need to create the boolean
+variable(s) normally returned by functions like notv and numberv. Calls to
+the functions NUMBERPV, REALPV, INTEGERPV, MEMBERPV, BOOLEANPV, =V, &lt;V, &lt;=V,
+&gt;V, &gt;=V, /=V, NOTV, FUNCALLV, APPLYV and EQUALV which appear directly nested
+in a call to decide, or directly nested in a call to NOTV which is in turn
+directly nested in a call to decide, are similarly transformed.
+
+</blockquote>
+
+<!-- End of entry for DECIDE -->
+
+
+<!-- Entry for DEFINE-SCREAMER-PACKAGE -->
+
+<p><br>[Macro]<br><a class=none name='define-screamer-package'><b>define-screamer-package</b> <i>defined-package-name declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Convenience wrapper around DEFPACKAGE. Passes its argument directly
+to DEFPACKAGE, and automatically injects two additional options:
+
+    (:shadowing-import-from :screamer :defun :multiple-value-bind :y-or-n-p)
+    (:use :cl :screamer)
+
+</blockquote>
+
+<!-- End of entry for DEFINE-SCREAMER-PACKAGE -->
+
+
+<!-- Entry for DIVIDE-AND-CONQUER-FORCE -->
+
+<p><br>[Function]<br><a class=none name='divide-and-conquer-force'><b>divide-and-conquer-force</b> <i>variable</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns X if X is not a variable. If X is a bound variable then returns its
+value. Otherwise implements a single binary-branching step of a
+divide-and-conquer search algorithm. There are always two alternatives, the
+second of which is tried upon backtracking.
+
+If it is known to have a finite domain D then this domain is split into two
+halves and the value of X is nondeterministically restricted to be a member
+one of the halves. If X becomes bound by this restriction then its value is
+returned. Otherwise, X itself is returned.
+
+If X is not known to have a finite domain but is known to be real and to have
+both lower and upper bounds then nondeterministically either the lower or
+upper bound is restricted to the midpoint between the lower and upper bound.
+If X becomes bound by this restriction then its dereferenced value is
+returned. Otherwise, X itself is returned.
+
+An error is signalled if X is not known to be restricted to a finite domain
+and either is not known to be real or is not known to have both a lower and
+upper bound.
+
+When the set of potential values may be infinite, users of
+DIVIDE-AND-CONQUER-FORCE may need to take care to fail when the range size of
+the variable becomes too small, unless other constraints on it are sufficient
+to guarentee failure.
+
+The method of splitting the domain into two halves is left unspecified to give
+future implementations leeway in incorporating heuristics in the process of
+determining a good search order. All that is specified is that if the domain
+size is even prior to splitting, the halves are of equal size, while if the
+domain size is odd, the halves differ in size by at most one.
+
+</blockquote>
+
+<!-- End of entry for DIVIDE-AND-CONQUER-FORCE -->
+
+
+<!-- Entry for DOMAIN-SIZE -->
+
+<p><br>[Function]<br><a class=none name='domain-size'><b>domain-size</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns the domain size of X.
+
+If X is an integer variable with an upper and lower bound, its domain size
+is the one greater than the difference of its bounds. Eg. [integer 1:2] has
+domain size 2.
+
+If X is a variable with an enumerated domain, its domain size is the size of
+that domain.
+
+If X is a CONS, or a variable whose value is a CONS, its domain size is the
+product of the domain sizes of its CAR and CDR.
+
+Other types of unbound variables have domain size NIL, whereas non-variables
+have domain size of 1.
+
+</blockquote>
+
+<!-- End of entry for DOMAIN-SIZE -->
+
+
+<!-- Entry for EITHER -->
+
+<p><br>[Macro]<br><a class=none name='either'><b>either</b> <i>declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Nondeterministically evaluates and returns the value of one of its
+ALTERNATIVES.
+
+EITHER takes any number of arguments. With no arguments, (EITHER) is
+equivalent to (FAIL) and is thus deterministic. With one argument, (EITHER
+X) is equivalent to X itself and is thus deterministic only when X is
+deterministic. With two or more argument it is nondeterministic and can only
+appear in a nondeterministic context.
+
+It sets up a choice-point and evaluates the first ALTERNATIVE returning its
+values. When backtracking follows to this choice-point, the next ALTERNATIVE
+is evaluated and its values are returned. When no more ALTERNATIVES remain,
+the current choice-point is removed and backtracking continues to the next
+most recent choice-point.
+
+</blockquote>
+
+<!-- End of entry for EITHER -->
+
+
+<!-- Entry for EQUALV -->
+
+<p><br>[Function]<br><a class=none name='equalv'><b>equalv</b> <i>x y</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns T if the aggregate object X is known to equal the aggregate object
+Y, NIL if the aggregate object X is known not to equal the aggregate object Y,
+and a new boolean variable V if it is not known whether or not X equals Y when
+EQUALV is called.
+
+The values of X, Y and V are mutually constraints via noticers so that V
+equals T if and only if X is known to equal Y and V equals NIL if and only if
+X is known not to equal Y.
+
+Noticers are attached to V as well as to all variables nested in both in X and
+Y. When the noticers attached to variables nested in X and Y detect that X is
+known to equal Y they restrict V to equal T. Likewise, when the noticers
+attached to variables nested in X and Y detect that X is known not to equal Y
+they restrict V to equal NIL.
+
+Furthermore, if V later becomes known to equal T then X and Y are unified.
+Likewise, if V later becomes known to equal NIL then X and Y are restricted to
+not be equal. This is accomplished by attaching noticers to the variables
+nested in X and Y which detect when X becomes equal to Y and fail.
+
+The expression (KNOWN? (EQUALV X Y)) is analogous to the extra-logical predicate
+`==&#039; typically available in Prolog.
+
+The expression (KNOWN? (NOTV (EQUALV X Y))) is analogous to the extra-logical
+predicate `\=&#039; typically available in Prolog.
+
+The expression (ASSERT! (EQUALV X Y)) is analogous to Prolog unification.
+
+The expression (ASSERT! (NOTV (EQUALV X Y))) is analogous to the
+disunification operator available in Prolog-II.
+
+</blockquote>
+
+<!-- End of entry for EQUALV -->
+
+
+<!-- Entry for EQV -->
+
+<p><br>[Function]<br><a class=none name='eqv'><b>eqv</b> <i>x y</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for EQV -->
+
+
+<!-- Entry for EVERYV -->
+
+<p><br>[Function]<br><a class=none name='everyv'><b>everyv</b> <i>f v</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for EVERYV -->
+
+
+<!-- Entry for EXACTLYV -->
+
+<p><br>[Macro]<br><a class=none name='exactlyv'><b>exactlyv</b> <i>n f <tt>&amp;rest</tt> x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for EXACTLYV -->
+
+
+<!-- Entry for FAIL -->
+
+<p><br>[Function]<br><a class=none name='fail'><b>fail</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Backtracks to the most recent choice-point.
+
+FAIL is deterministic function and thus it is permissible to reference #&#039;FAIL,
+and write (FUNCALL #&#039;FAIL) or (APPLY #&#039;FAIL).
+
+Calling FAIL when there is no choice-point to backtrack to signals an error.
+
+</blockquote>
+
+<!-- End of entry for FAIL -->
+
+
+<!-- Entry for FIRSTV -->
+
+<p><br>[Macro]<br><a class=none name='firstv'><b>firstv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for FIRSTV -->
+
+
+<!-- Entry for FOR-EFFECTS -->
+
+<p><br>[Macro]<br><a class=none name='for-effects'><b>for-effects</b> <i>declaration* statement* <tt>&amp;environment</tt> environment</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Evaluates BODY as an implicit PROGN in a nondeterministic context and
+returns NIL.
+
+The body is repeatedly backtracked to its first choice-point until the body
+fails.
+
+Local side effects performed by BODY are undone when FOR-EFFECTS returns.
+
+A FOR-EFFECTS expression can appear in both deterministic and nondeterministic
+contexts. Irrespective of what context the FOR-EFFECTS appears in, BODY are
+always in a nondeterministic context. A FOR-EFFECTS expression is is always
+deterministic.
+
+</blockquote>
+
+<!-- End of entry for FOR-EFFECTS -->
+
+
+<!-- Entry for FORMATV -->
+
+<p><br>[Function]<br><a class=none name='formatv'><b>formatv</b> <i><tt>&amp;rest</tt> args</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for FORMATV -->
+
+
+<!-- Entry for FOURTHV -->
+
+<p><br>[Macro]<br><a class=none name='fourthv'><b>fourthv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for FOURTHV -->
+
+
+<!-- Entry for FUNCALL-NONDETERMINISTIC -->
+
+<p><br>[Function]<br><a class=none name='funcall-nondeterministic'><b>funcall-nondeterministic</b> <i>function <tt>&amp;rest</tt> arguments</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Analogous to CL:FUNCALL, except FUNCTION can be either a nondeterministic
+function, or an ordinary determinisitic function.
+
+You must use FUNCALL-NONDETERMINISTIC to funcall a nondeterministic function.
+An error is signalled if you attempt to funcall a nondeterministic
+function object with CL:FUNCALL.
+
+You can use FUNCALL-NONDETERMINISTIC to funcall either a deterministic or
+nondeterministic function, though even if all of the ARGUMENTS are
+deterministic and FUNCTION is a deterministic function object, the call
+expression will still be nondeterministic (with presumably a single value),
+since it is impossible to determine at compile time that a given call to
+FUNCALL-NONDETERMINISTIC will be passed only deterministic function objects
+for function.
+
+</blockquote>
+
+<!-- End of entry for FUNCALL-NONDETERMINISTIC -->
+
+
+<!-- Entry for FUNCALLINV -->
+
+<p><br>[Function]<br><a class=none name='funcallinv'><b>funcallinv</b> <i>f inverse <tt>&amp;rest</tt> el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for FUNCALLINV -->
+
+
+<!-- Entry for FUNCALLV -->
+
+<p><br>[Function]<br><a class=none name='funcallv'><b>funcallv</b> <i>f <tt>&amp;rest</tt> x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+F must be a deterministic function. If all arguments X are bound, returns
+the result of calling F on the dereferenced values of arguments.
+
+Otherwise returns a fresh variable V, constrained to be equal to the result
+of calling F on the dereferenced values of arguments.
+
+Additionally, if all but one of V and the argument variables become known, and
+the remaining variable has a finite domain, then that domain is further
+restricted to be consistent with other arguments.
+
+</blockquote>
+
+<!-- End of entry for FUNCALLV -->
+
+
+<!-- Entry for GLOBAL -->
+
+<p><br>[Macro]<br><a class=none name='global'><b>global</b> <i>declaration* statement* <tt>&amp;environment</tt> environment</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Evaluates BODY in the same fashion as PROGN except that all SETF and SETQ
+forms lexically nested in its body result in global side effects which are not
+undone upon backtracking.
+
+Note that this affects only side effects introduced explicitly via SETF and
+SETQ. Side effects introduced by Common Lisp builtin functions such as RPLACA
+are always global anyway.
+
+LOCAL and GLOBAL may be nested inside one another. The nearest lexically
+surrounding one determines whether or not a given SETF or SETQ results in a
+local or global side effect.
+
+Side effects default to be global when there is no surrounding LOCAL or GLOBAL
+expression. Global side effects can appear both in deterministic as well as
+nondeterministic contexts. In nondeterministic contexts, GLOBAL as well as
+SETF are treated as special forms rather than macros. This should be
+completely transparent to the user.
+
+</blockquote>
+
+<!-- End of entry for GLOBAL -->
+
+
+<!-- Entry for GROUND? -->
+
+<p><br>[Function]<br><a class=none name='ground?'><b>ground?</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+The primitive GROUND? is an extension of the primitive BOUND? which
+can recursively determine whether an entire aggregate object is
+bound. Returns T if X is bound and either the value of X is atomic or
+a CONS tree where all atoms are bound.
+
+Otherwise returns nil.
+
+</blockquote>
+
+<!-- End of entry for GROUND? -->
+
+
+<!-- Entry for IFV -->
+
+<p><br>[Macro]<br><a class=none name='ifv'><b>ifv</b> <i>condition exp1 <tt>&amp;optional</tt> exp2</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for IFV -->
+
+
+<!-- Entry for IMPLIESV -->
+
+<p><br>[Function]<br><a class=none name='impliesv'><b>impliesv</b> <i>p q</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for IMPLIESV -->
+
+
+<!-- Entry for INTEGERPV -->
+
+<p><br>[Function]<br><a class=none name='integerpv'><b>integerpv</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns T if X is known to be integer valued, and NIL if X is known be
+non-integer value.
+
+If it is not known whether or not X is integer valued when INTEGERPV is called
+then INTEGERPV creates and returns a new boolean variable V.
+
+The values of X and V are mutually constrained via noticers so that V is equal
+to T if and only if X is known to be integer valued, and V is equal to NIL if
+and only if X is known to be non-integer valued.
+
+If X later becomes known to be integer valued, a noticer attached to X
+restricts V to equal T. Likewise, if X later becomes known to be non-integer
+valued, a noticer attached to X restricts V to equal NIL.
+
+Furthermore, if V ever becomes known to equal T then a noticer attached to V
+restricts X to be integer valued. Likewise, if V ever becomes known to equal
+NIL then a noticer attached to V restricts X to be non-integer valued.
+
+</blockquote>
+
+<!-- End of entry for INTEGERPV -->
+
+
+<!-- Entry for INTERSECTIONV -->
+
+<p><br>[Function]<br><a class=none name='intersectionv'><b>intersectionv</b> <i>x y</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for INTERSECTIONV -->
+
+
+<!-- Entry for ITH-VALUE -->
+
+<p><br>[Macro]<br><a class=none name='ith-value'><b>ith-value</b> <i>i form <tt>&amp;optional</tt> default</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns the Ith nondeterministic value yielded by FORM.
+
+I must be an integer. The first nondeterministic value yielded by FORM is
+numbered zero, the second one, etc. The Ith value is produced by repeatedly
+evaluating FORM, backtracking through and discarding the first I values and
+deterministically returning the next value produced.
+
+No further execution of FORM is attempted after it successfully yields the
+desired value.
+
+If FORM fails before yielding both the I values to be discarded, as well as
+the desired Ith value, then DEFAULT is evaluated and its value returned
+instead. DEFAULT defaults to (FAIL) if not present.
+
+Local side effects performed by FORM are undone when ITH-VALUE returns, but
+local side effects performed by DEFAULT and by I are not undone when ITH-VALUE
+returns.
+
+An ITH-VALUE expression can appear in both deterministic and nondeterministic
+contexts. Irrespective of what context the ITH-VALUE appears in, FORM is
+always in a nondeterministic context, while DEFAULT and I are in whatever
+context the ITH-VALUE appears in.
+
+An ITH-VALUE expression is nondeterministic if DEFAULT is present and is
+nondeterministic, or if I is nondeterministic. Otherwise it is deterministic.
+
+If DEFAULT is present and nondeterministic, and if FORM fails, then it is
+possible to backtrack into the DEFAULT and for the ITH-VALUE expression to
+nondeterministically return multiple times.
+
+If I is nondeterministic then the ITH-VALUE expression operates
+nondeterministically on each value of I. In this case, backtracking for each
+value of FORM and DEFAULT is nested in, and restarted for, each backtrack of
+I.
+
+</blockquote>
+
+<!-- End of entry for ITH-VALUE -->
+
+
+<!-- Entry for KNOWN? -->
+
+<p><br>[Macro]<br><a class=none name='known?'><b>known?</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Restricts X to be a boolean. If X is equal to T after being restricted to
+be boolean, returns T. If X is equal to NIL or if the value of X is unknown
+returns NIL. The argument X can be either a variable or a non-variable.
+
+The initial restriction to boolean may cause other assertions to be made due
+to noticers attached to X. A call to KNOWN? fails if X is known not to be
+boolean prior to the assertion or if any of the assertions performed by the
+noticers result in failure.
+
+Restricting X to be boolean attaches a noticer on X so that any subsequent
+assertion which restricts X to be non-boolean will fail.
+
+Except for the fact that one cannot write #&#039;KNOWN?, KNOWN? behaves like a
+function, even though it is implemented as a macro.
+
+The reason it is implemented as a macro is to allow a number of compile time
+optimizations. Expressions like (KNOWN? (NOTV X)), (KNOWN? (NUMBERPV X))
+and (KNOWN? (NOTV (NUMBERPV X))) are transformed into calls to functions
+internal to Screamer which eliminate the need to create the boolean
+variable(s) normally returned by functions like NOTV and NUMBERV. Calls to
+the functions NUMBERPV, REALPV, INTEGERPV, MEMBERV, BOOLEANPV, =V, &lt;V, &lt;=V, V,
+&gt;=v, /=v, NOTV, FUNCALLV, APPLYV and EQUALV which appear directly nested in a
+call to KNOWN?, or directly nested in a call to NOTV which is in turn directly
+nested in a call to KNOWN?, are similarly transformed.
+
+</blockquote>
+
+<!-- End of entry for KNOWN? -->
+
+
+<!-- Entry for LENGTHV -->
+
+<p><br>[Function]<br><a class=none name='lengthv'><b>lengthv</b> <i>el <tt>&amp;optional</tt> is-list</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for LENGTHV -->
+
+
+<!-- Entry for LINEAR-FORCE -->
+
+<p><br>[Function]<br><a class=none name='linear-force'><b>linear-force</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns X if it is not a variable. If X is a bound variable then returns
+its value.
+
+If X is an unbound variable then it must be known to have a countable set of
+potential values. In this case X is nondeterministically restricted to be
+equal to one of the values in this countable set, thus forcing X to be bound.
+The dereferenced value of X is then returned.
+
+An unbound variable is known to have a countable set of potential values
+either if it is known to have a finite domain or if it is known to be integer
+valued.
+
+An error is signalled if X is not known to have a finite domain and is not
+known to be integer valued.
+
+Upon backtracking X will be bound to each potential value in turn, failing
+when there remain no untried alternatives.
+
+Since the set of potential values is required only to be countable, not
+finite, the set of untried alternatives may never be exhausted and
+backtracking need not terminate. This can happen, for instance, when X is
+known to be an integer but lacks either an upper of lower bound.
+
+The order in which the nondeterministic alternatives are tried is left
+unspecified to give future implementations leeway in incorporating heuristics
+in the process of determining a good search order.
+
+</blockquote>
+
+<!-- End of entry for LINEAR-FORCE -->
+
+
+<!-- Entry for LISTPV -->
+
+<p><br>[Macro]<br><a class=none name='listpv'><b>listpv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for LISTPV -->
+
+
+<!-- Entry for LOCAL -->
+
+<p><br>[Macro]<br><a class=none name='local'><b>local</b> <i>declaration* statement* <tt>&amp;environment</tt> environment</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Evaluates BODY in the same fashion as PROGN except that all SETF and SETQ
+forms lexically nested in its body result in local side effects which are
+undone upon backtracking.
+
+This affects only side effects introduced explicitly via SETF and SETQ. Side
+effects introduced by either user defined functions or builtin Common Lisp
+functions such as RPLACA are always global.
+
+Behaviour of side effects introduced by macro-expansions such as INCF depends
+on the exact macro-expansion. If (INCF (FOO)) expands using eg. SET-FOO, LOCAL
+is unable to undo the side-effect.
+
+LOCAL cannot distinguish between initially uninitialized and intialized
+places, such as unbound variables or hash-table keys with no prior values. As
+a result, an attempt to assign an unbound variable inside LOCAL will signal an
+error due to the system&#039;s attempt to first read the variable. Similarly,
+undoing a (SETF GETHASH) when the key did not previously exist in the table
+will insert a NIL into the table instead of doing a REMHASH. Easiest way
+to work around this is by using TRAIL.
+
+LOCAL and GLOBAL may be nested inside one another. The nearest lexically
+surrounding one determines whether or not a given SETF or SETQ results in a
+local or global side effect.
+
+Side effects default to be global when there is no surrounding LOCAL or GLOBAL
+expression. Local side effects can appear both in deterministic as well as
+nondeterministic contexts though different techniques are used to implement
+the trailing of prior values for restoration upon backtracking. In
+nondeterministic contexts, LOCAL as well as SETF are treated as special forms
+rather than macros. This should be completely transparent to the user.
+
+</blockquote>
+
+<!-- End of entry for LOCAL -->
+
+
+<!-- Entry for LOCAL-OUTPUT -->
+
+<p><br>[Macro]<br><a class=none name='local-output'><b>local-output</b> <i>declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Currently unsupported.
+
+When running under ILisp with iscream.el loaded, does non-determinism aware
+output to Emacs, which will be deleted when the current choice is unwound.
+
+</blockquote>
+
+<!-- End of entry for LOCAL-OUTPUT -->
+
+
+<!-- Entry for MAKE-ARRAYV -->
+
+<p><br>[Function]<br><a class=none name='make-arrayv'><b>make-arrayv</b> <i>dimensions <tt>&amp;key</tt> element-type</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for MAKE-ARRAYV -->
+
+
+<!-- Entry for MAKE-EQUAL -->
+
+<p><br>[Macro]<br><a class=none name='make-equal'><b>make-equal</b> <i>var value <tt>&amp;optional</tt> retval</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for MAKE-EQUAL -->
+
+
+<!-- Entry for MAKE-INSTANCEV -->
+
+<p><br>[Function]<br><a class=none name='make-instancev'><b>make-instancev</b> <i><tt>&amp;rest</tt> args</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for MAKE-INSTANCEV -->
+
+
+<!-- Entry for MAKE-LISTV -->
+
+<p><br>[Function]<br><a class=none name='make-listv'><b>make-listv</b> <i>n <tt>&amp;key</tt> initial-element <tt>&amp;aux</tt> acc</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for MAKE-LISTV -->
+
+
+<!-- Entry for MAKE-VARIABLE -->
+
+<p><br>[Function]<br><a class=none name='make-variable'><b>make-variable</b> <i><tt>&amp;optional</tt> name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for MAKE-VARIABLE -->
+
+
+<!-- Entry for MAPCARV -->
+
+<p><br>[Function]<br><a class=none name='mapcarv'><b>mapcarv</b> <i>f <tt>&amp;rest</tt> el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for MAPCARV -->
+
+
+<!-- Entry for MAPLISTV -->
+
+<p><br>[Function]<br><a class=none name='maplistv'><b>maplistv</b> <i>f <tt>&amp;rest</tt> el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for MAPLISTV -->
+
+
+<!-- Entry for MAXV -->
+
+<p><br>[Function]<br><a class=none name='maxv'><b>maxv</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Constrains its arguments to be real. If called with a single argument,
+returns its value. If called with multiple arguments, behaves as if a
+combination of two argument calls:
+
+  (MAXV X1 X2 ... Xn) == (MAXV (MAXV X1 X2) ... Xn)
+
+If called with two arguments, and either is known to be greater than or equal
+to the other, returns the value of that argument. Otherwise returns a real
+variable V, mutually constrained with the arguments:
+
+  * Maximum of the values of X1 and X2 is constrained to equal V. This
+    includes constraining their bounds appropriately. If it becomes know that
+    cannot be true. FAIL is called.
+
+  * If both arguments are integers, V is constrained to be an integer.
+
+</blockquote>
+
+<!-- End of entry for MAXV -->
+
+
+<!-- Entry for MEMBERV -->
+
+<p><br>[Function]<br><a class=none name='memberv'><b>memberv</b> <i>x sequence</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns T if X is known to be a member of SEQUENCE (using the Common Lisp
+function EQL as a test function), NIL if X is known not to be a member of
+SEQUENCE, and otherwise returns a new boolean variable V.
+
+When a new variable is created, the values of X and V are mutually constrained
+via noticers so that V is equal to T if and only if X is known to be a member
+of SEQUENCE and V is equal to NIL if and only if X is known not to be a member
+of SEQUENCE.
+
+* If X later becomes known to be a member of SEQUENCE, a noticer attached to X
+  restricts v to equal T. Likewise, if X later becomes known not to be a
+  member of SEQUENCE, a noticer attached to X restricts V to equal NIL.
+
+* If V ever becomes known to equal T then a noticer attached to V restricts X
+  to be a member of SEQUENCE. Likewise, if V ever becomes known to equal NIL
+  then a noticer attached to V restricts X not to be a member of SEQUENCE.
+
+The current implementation imposes two constraints on the parameter SEQUENCE.
+First, SEQUENCE must be bound when MEMBERV is called. Second, SEQUENCE must
+not contain any unbound variables when MEMBERV is called.
+
+The value of parameter SEQUENCE must be a sequence, i.e. either a list or a
+vector.
+
+</blockquote>
+
+<!-- End of entry for MEMBERV -->
+
+
+<!-- Entry for MINV -->
+
+<p><br>[Function]<br><a class=none name='minv'><b>minv</b> <i>x <tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Constrains its arguments to be real. If called with a single argument,
+returns its value. If called with multiple arguments, behaves as if a
+combination of two argument calls:
+
+  (MINV X1 X2 ... Xn) == (MINV (MINV X1 X2) ... Xn)
+
+If called with two arguments, and either is known to be less than or equal to
+the other, returns the value of that argument. Otherwise returns a real variable
+V, mutually constrained with the arguments:
+
+  * Minimum of the values of X1 and X2 is constrained to equal V. This
+    includes constraining their bounds appropriately. If it becomes know that
+    cannot be true. FAIL is called.
+
+  * If both arguments are integers, V is constrained to be an integer.
+
+</blockquote>
+
+<!-- End of entry for MINV -->
+
+
+<!-- Entry for MULTIPLE-VALUE-CALL-NONDETERMINISTIC -->
+
+<p><br>[Function]<br><a class=none name='multiple-value-call-nondeterministic'><b>multiple-value-call-nondeterministic</b> <i>function-form <tt>&amp;rest</tt> values-forms</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Analogous to the CL:MULTIPLE-VALUE-CALL, except FUNCTION-FORM can evaluate
+to either a nondeterministic function, or an ordinary deterministic function.
+
+You must use MULTIPLE-VALUE-CALL-NONDETERMINISTIC to multiple-value-call a
+nondeterministic function. An error is signalled if a nondeterministic function
+object is used with CL:MULTIPLE-VALUE-CALL.
+
+You can use MULTIPLE-VALUE-CALL-NONDETERMINISTIC to call either a
+deterministic or nondeterministic function, though even if all of the
+VALUES-FORMS are deterministic and FUNCTION-FORM evaluates to a deterministic
+function object, the call expression will still be nondeterministic (with
+presumably a single value), since it is impossible to determine at compile
+time that a given call to MULTIPLE-VALUE-CALL-NONDETERMINISTIC will be passed
+only deterministic function objects for function.
+
+While MULTIPLE-VALUE-CALL-NONDETERMINISTIC appears to be a function, it
+is really a special-operator implemented by the code-walkers processing
+nondeterministic source contexts.
+
+</blockquote>
+
+<!-- End of entry for MULTIPLE-VALUE-CALL-NONDETERMINISTIC -->
+
+
+<!-- Entry for NECESSARILY? -->
+
+<p><br>[Macro]<br><a class=none name='necessarily?'><b>necessarily?</b> <i>declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Evaluates BODY as an implicit PROGN in nondeterministic context,
+returning true if the body never yields false.
+
+The body is repeatedly backtracked as long as it yields true. Returns the last
+true value yielded by the body if it fails before yielding NIL, otherwise
+returns NIL.
+
+Local side effects performed by the body are undone when NECESSARILY? returns.
+
+A NECESSARILY? expression can appear in both deterministic and
+nondeterministic contexts. Irrespective of what context the NECESSARILY?
+appears in, its body is always in a nondeterministic context. A NECESSARILY?
+expression is always deterministic.
+
+</blockquote>
+
+<!-- End of entry for NECESSARILY? -->
+
+
+<!-- Entry for NONDETERMINISTIC-FUNCTION? -->
+
+<p><br>[Function]<br><a class=none name='nondeterministic-function?'><b>nondeterministic-function?</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns T if X is a nondeterministic function and NIL otherwise.
+
+#&#039;FOO returns a nondeterministic function object iff it is used in nondeterminisitc
+context and FOO is either a nondeterministic LAMBDA form, or the name of a
+nondeterministic function defined using SCREAMER::DEFUN.
+
+Currently, if FOO is a nondeterministic function defined using
+SCREAMER::DEFUN, #&#039;FOO and (SYMBOL-FUNCTION &#039;FOO) in deterministic context
+will return an ordinary deterministic Common Lisp function, which will signal
+an error at runtime.
+
+</blockquote>
+
+<!-- End of entry for NONDETERMINISTIC-FUNCTION? -->
+
+
+<!-- Entry for NOT-EQUALV -->
+
+<p><br>[Function]<br><a class=none name='not-equalv'><b>not-equalv</b> <i>x y <tt>&amp;key</tt> full-propagation</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for NOT-EQUALV -->
+
+
+<!-- Entry for NOTANYV -->
+
+<p><br>[Function]<br><a class=none name='notanyv'><b>notanyv</b> <i>f v</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for NOTANYV -->
+
+
+<!-- Entry for NOTEVERYV -->
+
+<p><br>[Function]<br><a class=none name='noteveryv'><b>noteveryv</b> <i>f v</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for NOTEVERYV -->
+
+
+<!-- Entry for NOTV -->
+
+<p><br>[Function]<br><a class=none name='notv'><b>notv</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Restricts X to be a boolean.
+
+Returns T if this restricts X to NIL, and T if this restricts X to NIL.
+
+Otherwise returns a new boolean variable V. V and X are mutually constrained
+via noticers, so that if either is later known to equal T, the other is
+restricted to equal NIL and vice versa.
+
+Note that unlike CL:NOT NOTV does not accept arbitrary values as arguments: it
+fails if its argument is not T, NIL, or variable that can be restricted to a
+boolean.
+
+</blockquote>
+
+<!-- End of entry for NOTV -->
+
+
+<!-- Entry for NTHV -->
+
+<p><br>[Function]<br><a class=none name='nthv'><b>nthv</b> <i>n el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for NTHV -->
+
+
+<!-- Entry for NUMBERPV -->
+
+<p><br>[Function]<br><a class=none name='numberpv'><b>numberpv</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns T if X is known to be numeric, NIL if X is known to be
+non-numeric, and otherwise returns a new boolean variable V.
+
+The values of X and V are mutually constrained via noticers so that V is equal
+to T if and only if X is known to be numeric and V is equal to NIL if and only
+if X is known to be non-numeric.
+
+* If X later becomes known to be numeric, a noticer attached to X restricts V
+  to equal T. Likewise, if X later becomes known to be non-numeric, a noticer
+  attached to X restricts V to equal NIL.
+
+* If V ever becomes known
+  to equal T then a noticer attached to V restricts X to be numeric. Likewise,
+  if V ever becomes known to equal NIL then a noticer attached to V restricts X
+  to be non-numeric.
+
+</blockquote>
+
+<!-- End of entry for NUMBERPV -->
+
+
+<!-- Entry for OBJECTP -->
+
+<p><br>[Function]<br><a class=none name='objectp'><b>objectp</b> <i>var</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Determines whether a variable is a standard CLOS object or not
+
+</blockquote>
+
+<!-- End of entry for OBJECTP -->
+
+
+<!-- Entry for ONE-VALUE -->
+
+<p><br>[Macro]<br><a class=none name='one-value'><b>one-value</b> <i>form <tt>&amp;optional</tt> default</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns the first nondeterministic value yielded by FORM.
+
+No further execution of FORM is attempted after it successfully returns one
+value.
+
+If FORM does not yield any nondeterministic values (i.e. it fails) then
+DEFAULT is evaluated and its value returned instead. DEFAULT defaults to
+(FAIL) if not present.
+
+Local side effects performed by FORM are undone when ONE-VALUE returns, but
+local side effects performed by DEFAULT are not undone when ONE-VALUE returns.
+
+A ONE-VALUE expression can appear in both deterministic and nondeterministic
+contexts. Irrespective of what context the ONE-VALUE appears in, FORM is
+always in a nondeterministic context, while DEFAULT is in whatever context the
+ONE-VALUE form appears.
+
+A ONE-VALUE expression is nondeterministic if DEFAULT is present and is
+nondeterministic, otherwise it is deterministic.
+
+If DEFAULT is present and nondeterministic, and if FORM fails, then it is
+possible to backtrack into the DEFAULT and for the ONE-VALUE form to
+nondeterministically return multiple times. ONE-VALUE is analogous to the cut
+primitive (`!&#039;) in Prolog.
+
+</blockquote>
+
+<!-- End of entry for ONE-VALUE -->
+
+
+<!-- Entry for ORV -->
+
+<p><br>[Function]<br><a class=none name='orv'><b>orv</b> <i><tt>&amp;rest</tt> xs</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Restricts each argument to be boolean.
+
+Returns NIL if called with no arguments, or if all arguments are known to
+equal NIL after being restructed to be boolean, and returns T if any argument
+is known to equal T after this restriction.
+
+Otherwise returns a boolean variable V. The values of arguments and V are
+mutually constrained:
+
+ * If any argument is later known to equal T, value of V becomes T.
+
+ * If all arguments are later known to equal NIL, value of V becomes NIL.
+
+ * If value of V is later known to equal NIL, all arguments become NIL.
+
+ * If value of V is later known to equal T, and all but one argument is
+   known to be NIL, the remaining argument becomes T.
+
+Note that unlike CL:OR, ORV is a function and always evaluates all its
+arguments. Secondly, any non-boolean argument causes it to fail.
+
+</blockquote>
+
+<!-- End of entry for ORV -->
+
+
+<!-- Entry for POSSIBLY? -->
+
+<p><br>[Macro]<br><a class=none name='possibly?'><b>possibly?</b> <i>declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Evaluates BODY as an implicit PROGN in nondeterministic context,
+returning true if the body ever yields true.
+
+The body is repeatedly backtracked as long as it yields NIL. Returns
+the first true value yielded by the body, or NIL if body fails before
+yielding true.
+
+Local side effects performed by the body are undone when POSSIBLY? returns.
+
+A POSSIBLY? expression can appear in both deterministic and nondeterministic
+contexts. Irrespective of what context the POSSIBLY? appears in, its body is
+always in a nondeterministic context. A POSSIBLY? expression is always
+deterministic.
+
+</blockquote>
+
+<!-- End of entry for POSSIBLY? -->
+
+
+<!-- Entry for PRINT-VALUES -->
+
+<p><br>[Macro]<br><a class=none name='print-values'><b>print-values</b> <i>declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Evaluates BODY as an implicit PROGN and prints each of the nondeterministic
+values yielded by it using PRINT.
+
+After each value is printed, the user is queried as to whether or not further
+values are desired. These values are produced by repeatedly evaluating the
+body and backtracking to produce the next value, until either the user
+indicates that no further values are desired or until the body fails and
+yields no further values.
+
+Returns the last value printed.
+
+Accordingly, local side effects performed by the body while producing each
+value are undone after printing each value, before attempting to produce
+subsequent values, and all local side effects performed by the body are undone
+upon exit from PRINT-VALUES, either because there are no further values or
+because the user declines to produce further values.
+
+A PRINT-VALUES expression can appear in both deterministic and
+nondeterministic contexts. Irrespective of what context the PRINT-VALUES
+appears in, the BODY are always in a nondeterministic context. A
+PRINT-VALUES expression itself is always deterministic.
+
+PRINT-VALUES is analogous to the standard top-level user interface in Prolog.
+
+</blockquote>
+
+<!-- End of entry for PRINT-VALUES -->
+
+
+<!-- Entry for PURGE -->
+
+<p><br>[Function]<br><a class=none name='purge'><b>purge</b> <i>function-name</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Removes any information about FUNCTION-NAME from Screamer&#039;s
+who-calls database.
+
+</blockquote>
+
+<!-- End of entry for PURGE -->
+
+
+<!-- Entry for RANGE-SIZE -->
+
+<p><br>[Function]<br><a class=none name='range-size'><b>range-size</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns the range size of X. Range size is the size of the range values
+of X may take.
+
+If X is an integer or a bound variable whose value is an integer, it has the
+range size 0. Reals and bound variables whose values are reals have range size
+0.0.
+
+Unbound variables known to be reals with an upper and lower bound have a range
+size the difference of their upper and lower bounds.
+
+Other types of objects and variables have range size NIL.
+
+</blockquote>
+
+<!-- End of entry for RANGE-SIZE -->
+
+
+<!-- Entry for REALPV -->
+
+<p><br>[Function]<br><a class=none name='realpv'><b>realpv</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns T if X is known to be real, NIL if X is known to be non-real,
+and otherwise returns a new boolean variable V.
+
+The values of X and V are mutually constrained via noticers so that V is equal
+to T if and only if X is known to be real and V is equal to NIL if and only if
+X is known to be non-real.
+
+* If X later becomes known to be real, a noticer attached to X restricts V to
+  equal T. Likewise, if X later becomes known to be non-real, a noticer
+  attached to X restricts V to equal NIL.
+
+* If V ever becomes known to equal T then a noticer attached to V restricts X
+  to be real. Likewise, if V ever becomes known to equal NIL then a noticer
+  attached to V restricts X to be non-real.
+
+</blockquote>
+
+<!-- End of entry for REALPV -->
+
+
+<!-- Entry for RECONCILE -->
+
+<p><br>[Function]<br><a class=none name='reconcile'><b>reconcile</b> <i>var1 var2</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for RECONCILE -->
+
+
+<!-- Entry for REORDER -->
+
+<p><br>[Function]<br><a class=none name='reorder'><b>reorder</b> <i>cost-function terminate? order force-function</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns an ordering force function based on arguments.
+
+The FORCE-FUNCTION is any (potentially nondeterministic) function
+which can be applied to a variable as its single argument with the
+stipulation that a finite number of repeated applications will force
+the variable to be bound. The FORCE-FUNCTION need not return any useful value.
+
+The ordering force function which is returned is a nondeterministic function
+which takes a single argument X. This argument X can be a list of values where
+each value may be either a variable or a non-variable.
+
+The ordering force function repeatedly selects a &quot;best&quot; variable using using
+COST-FUNCTION and ORDER. Eg. using #&#039;DOMAIN-SIZE and #&#039;&lt; as the COST-FUNCTION
+and ORDER, then the variable with the smallest domain will be forced first.
+
+Function TERMINATE? is then called with the determined cost of that variable,
+and unless it returns true, FORCE-FUNCTION is applied to that variable to
+force constrain it.
+
+Process then iterates until all variables become bound or TERMINATE? returns
+true.
+
+The ordering force function does not return any meaningful result.
+
+Screamer currently provides two convenient force-functions, namely
+#&#039;linear-force and #&#039;divide-and-conquer-force though future implementations
+may provide additional ones. (The defined Screamer protocol does not provide
+sufficient hooks for the user to define her own force functions.)
+
+</blockquote>
+
+<!-- End of entry for REORDER -->
+
+
+<!-- Entry for RESTV -->
+
+<p><br>[Macro]<br><a class=none name='restv'><b>restv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for RESTV -->
+
+
+<!-- Entry for SECONDV -->
+
+<p><br>[Macro]<br><a class=none name='secondv'><b>secondv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SECONDV -->
+
+
+<!-- Entry for SET-EQUALV -->
+
+<p><br>[Function]<br><a class=none name='set-equalv'><b>set-equalv</b> <i>x y</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SET-EQUALV -->
+
+
+<!-- Entry for SETQ-DOMAINS -->
+
+<p><br>[Macro]<br><a class=none name='setq-domains'><b>setq-domains</b> <i>vars vals <tt>&amp;aux</tt> res</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SETQ-DOMAINS -->
+
+
+<!-- Entry for SLOT-EXISTS-PV -->
+
+<p><br>[Function]<br><a class=none name='slot-exists-pv'><b>slot-exists-pv</b> <i>obj slotname</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SLOT-EXISTS-PV -->
+
+
+<!-- Entry for SLOT-NAMES-OF -->
+
+<p><br>[Function]<br><a class=none name='slot-names-of'><b>slot-names-of</b> <i>obj</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SLOT-NAMES-OF -->
+
+
+<!-- Entry for SLOT-VALUEV -->
+
+<p><br>[Function]<br><a class=none name='slot-valuev'><b>slot-valuev</b> <i>objvar slotname</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SLOT-VALUEV -->
+
+
+<!-- Entry for SOLUTION -->
+
+<p><br>[Function]<br><a class=none name='solution'><b>solution</b> <i>arguments ordering-force-function</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+ARGUMENTS is a list of values. Typically it is a list of
+variables but it may also contain nonvariables.
+
+The specified ORDERING-FORCE-FUNCTION is used to force each of the variables
+in list to be bound.
+
+Returns a list of the values of the elements of list in the same order that
+they appear in list, irrespective of the forcing order imposed by the
+ORDERING-FORCE-FUNCTION.
+
+The ORDERING-FORCE-FUNCTION can be any function which takes a list of values
+as its single argument that is guaranteed to force all variables in that list
+to be bound upon its return. The returned value of the ORDERING-FORCE-FUNCTION
+is ignored.
+
+The user can construct her own ORDERING-FORCE-FUNCTION or use one of the
+following alternatives provided with Screamer:
+
+   (STATIC-ORDERING #&#039;LINEAR-FORCE),
+   (STATIC-ORDERING #&#039;DIVIDE-AND-CONQUER-FORCE),
+   (REORDER COST-FUN TERMINATE-TEST ORDER #&#039;LINEAR-FORCE) and
+   (REORDER COST-FUN TERMINATE-TEST ORDER #&#039;DIVIDE-AND-CONQUER-FORCE).
+
+Future implementation of Screamer may provide additional forcing and ordering
+functions.
+
+</blockquote>
+
+<!-- End of entry for SOLUTION -->
+
+
+<!-- Entry for SOMEV -->
+
+<p><br>[Function]<br><a class=none name='somev'><b>somev</b> <i>f v</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SOMEV -->
+
+
+<!-- Entry for STATIC-ORDERING -->
+
+<p><br>[Function]<br><a class=none name='static-ordering'><b>static-ordering</b> <i>force-function</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns an ordering force function based on FORCE-FUNCTION.
+
+The ordering force function which is returned is a nondeterministic function
+which takes a single argument X. This argument X can be a list of values where
+each value may be either a variable or a non-variable. The ordering force
+function applies the FORCE-FUNCTION in turn to each of the variables in X, in
+the order that they appear, repeatedly applying the FORCE-FUNCTION to a given
+variable until it becomes bound before proceeding to the next variable. The
+ordering force function does not return any meaningful result.
+
+FORCE-FUNCTION is any (potentially nondeterministic) function which can be
+applied to a variable as its single argument with the stipulation that a
+finite number of repeated applications will force the variable to be bound.
+The FORCE-FUNCTION need not return any useful value.
+
+Screamer currently provides two convenient force-functions, namely
+#&#039;LINEAR-FORCE and #&#039;DIVIDE-AND-CONQUER-FORCE though future implementations
+may provide additional ones. (The defined Screamer protocol does not provide
+sufficient hooks for the user to define her own force functions.)
+
+</blockquote>
+
+<!-- End of entry for STATIC-ORDERING -->
+
+
+<!-- Entry for STRINGPV -->
+
+<p><br>[Macro]<br><a class=none name='stringpv'><b>stringpv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for STRINGPV -->
+
+
+<!-- Entry for SUBSEQV -->
+
+<p><br>[Function]<br><a class=none name='subseqv'><b>subseqv</b> <i>x n <tt>&amp;optional</tt> q</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SUBSEQV -->
+
+
+<!-- Entry for SUBSETPV -->
+
+<p><br>[Function]<br><a class=none name='subsetpv'><b>subsetpv</b> <i>x y</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SUBSETPV -->
+
+
+<!-- Entry for SYMBOLPV -->
+
+<p><br>[Macro]<br><a class=none name='symbolpv'><b>symbolpv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for SYMBOLPV -->
+
+
+<!-- Entry for TEMPLATE -->
+
+<p><br>[Function]<br><a class=none name='template'><b>template</b> <i>template</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Copies an aggregate object, replacing any symbol beginning with a question
+mark with a newly created variable.
+
+If the same symbol appears more than once in X, only one variable is created
+for that symbol, the same variable replacing any occurrences of that symbol.
+Thus (TEMPLATE &#039;(A B (?C D ?E) ?E)) has the same effect as:
+
+  (LET ((?C (MAKE-VARIABLE))
+        (?E (MAKE-VARIABLE)))
+    (LIST &#039;A &#039;B (LIST C &#039;D E) E)).
+
+This is useful for creating patterns to be unified with other structures.
+
+</blockquote>
+
+<!-- End of entry for TEMPLATE -->
+
+
+<!-- Entry for THIRDV -->
+
+<p><br>[Macro]<br><a class=none name='thirdv'><b>thirdv</b> <i>el</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for THIRDV -->
+
+
+<!-- Entry for TYPEPV -->
+
+<p><br>[Function]<br><a class=none name='typepv'><b>typepv</b> <i>el type</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for TYPEPV -->
+
+
+<!-- Entry for UNIONV -->
+
+<p><br>[Function]<br><a class=none name='unionv'><b>unionv</b> <i>x y</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+
+
+</blockquote>
+
+<!-- End of entry for UNIONV -->
+
+
+<!-- Entry for UNWEDGE-SCREAMER -->
+
+<p><br>[Function]<br><a class=none name='unwedge-screamer'><b>unwedge-screamer</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Removes any information about all user defined functions from
+Screamer&#039;s who-calls database.
+
+</blockquote>
+
+<!-- End of entry for UNWEDGE-SCREAMER -->
+
+
+<!-- Entry for UNWIND-TRAIL -->
+
+<p><br>[Function]<br><a class=none name='unwind-trail'><b>unwind-trail</b> <i></i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+DEPRECATED.
+
+Calls all functions installed using TRAIL, and removes them from the trail.
+
+Using UNWIND-TRAIL is dangerous, as TRAIL is used by Screamer internally to
+eg. undo effects of local assignments -- hence users should never call it. It
+is provided at the moment only for backwards compatibility with classic
+Screamer.
+
+</blockquote>
+
+<!-- End of entry for UNWIND-TRAIL -->
+
+
+<!-- Entry for VALUE-OF -->
+
+<p><br>[Function]<br><a class=none name='value-of'><b>value-of</b> <i>x</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Returns X if X is not a variable. If X is a variable then VALUE-OF
+dereferences X and returns the dereferenced value. If X is bound then
+the value returned will not be a variable. If X is unbound then the
+value returned will be a variable which may be X itself or another
+variable which is shared with X.
+
+</blockquote>
+
+<!-- End of entry for VALUE-OF -->
+
+
+<!-- Entry for WHEN-FAILING -->
+
+<p><br>[Macro]<br><a class=none name='when-failing'><b>when-failing</b> <i>(declaration* statement*) declaration* statement*</i> =&gt; <i>result</i></a>
+<blockquote><br>
+
+Whenever FAIL is called during execution of BODY, executes FAILING-FORMS
+before unwinding.
+
+</blockquote>
+
+<!-- End of entry for WHEN-FAILING -->
+
+
+<br>&nbsp;<br><h3><a class=none name="ack">Acknowledgements</a></h3>
+
+<p>
+This documentation was prepared with <a href="http://weitz.de/documentation-template/">DOCUMENTATION-TEMPLATE</a>.
+</p>
+<p>
+$Header: /usr/local/cvsrep/documentation-template/output.lisp,v 1.17 2010/08/05 19:24:27 edi Exp $
+<p><a href="http://weitz.de/index.html">BACK TO MY HOMEPAGE</a>
+
+</body>
+</html>
