@@ -1,0 +1,42 @@
+Screamer Tool Repository Index
+------------------------------
+Last updated June 1, 1994
+------------------------------
+
+This file contains a list of user-contributed code for working with or
+extending Screamer.
+
+************************************************************************
+
+pedagogical-snlp.lisp 
+
+    This is a pedagogical implementation of the SNLP planning algorithm due to
+    McAllester & Rosenblitt (1991)
+    (available as ftp.ai.mit.edu/pub/dam/aaai91c.ps)
+
+    Contributor: Jeffrey Mark Siskind  (qobi@cs.toronto.edu)
+    Size: 3073 bytes (compressed), 6423 bytes uncompressed
+
+    Platforms: This works under Lucid 4.1.1 and Allegro 4.2 on Sun SPARC
+        machines running Solaris 2.3 but exhibits a bug under AKCL 1.615 on
+        Sun SPARC machines running SunOS 4.x. Other AKCL implementations may
+        be buggy as well.  We have not yet tracked down the source of the bug.
+
+
+************************************************************************
+
+retract.lisp
+
+    This adds a layer on top of Screamer to permit the retraction of
+    assertions (assert!).  The two new functions are RASSERT! and RETRACT!.
+    RASSERT! does the same as ASSERT!, but additionally permits a user to
+    RETRACT! that assertion.
+
+    Contributor: Buddy Kresge (buddy@ggt.gsi.com)
+    Size: bytes 4151 bytes (compressed), 10804 bytes uncompressed
+
+    Platform: this was developed in Lucid Common Lisp running on an
+        HP9000 series 700 computer.
+
+************************************************************************
+*EOF*
